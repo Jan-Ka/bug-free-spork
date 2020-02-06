@@ -32,14 +32,20 @@ export class RechnungService {
     return this.allRechnung;
   }
 
-  private normalizeDemoJson(rawJson: IJsonRechnung[]): IRechnung[] {
+  private normalizeDemoJson(rawJson?: IJsonRechnung[]): IRechnung[] {
+    // missing file, empty file, broken JSON, wrong JSON are all be handled by the import
+    // anything that makes it to here will crash in the frontend which is acceptable for this project
     return rawJson.map((val: IJsonRechnung) => {
       return {
         'Rechnungs-UID': val['Rechnungs-UID'],
-        Rechnungsnummer: val.Rechnungsnummer,
+        // the content of `Rechnungsnummer` isn't really important
+        // but we expect strings of equal length
+        // `Rechnungs-UID` should be a GUID normally and we can use the last
+        // segment to simulate a 0-padded `Rechnungsnummer`
+        Rechnungsnummer: `DEMO-${val['Rechnungs-UID'].split('-').slice(-1).join()}`,
         Rechnungsempfänger: val.Rechnungsempfänger,
-        'Betrag Netto': 0,
-        Datum: new Date()
+        'Betrag Netto': parseFloat(val['Betrag Netto']),
+        Datum: new Date(val.Datum)
       };
     });
   }
