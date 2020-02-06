@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'bug-free-spork';
+  displayedColumns: string[] = ['rowNumber'];
+  dataSource = [
+    {
+      rowNumber: 1
+    },
+    {
+      rowNumber: 2
+    }
+  ];
 }
