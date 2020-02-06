@@ -22,6 +22,6 @@ export class AppComponent implements OnInit {
   }
 
   handlePageEvent(e: PageEvent) {
-    return;
+    this.rechnungService.filter(e.pageIndex, e.pageSize);
   }
 }

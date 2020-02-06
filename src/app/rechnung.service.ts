@@ -31,6 +31,14 @@ export class RechnungService {
     return this.allRechnung;
   }
 
+  filter(pageIndex: number, pageSize: number): void {
+    console.log(pageIndex);
+
+    const chunkOffset = pageIndex * pageSize;
+
+    this.allRechnung.next(this.fullDemoData.slice(chunkOffset, chunkOffset + pageSize));
+  }
+
   private normalizeDemoJson(rawJson?: IJsonRechnung[]): IRechnung[] {
     // missing file, empty file, broken JSON, wrong JSON are all be handled by the import
     // anything that makes it to here will crash in the frontend which is acceptable for this project
