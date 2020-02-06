@@ -18,18 +18,25 @@ interface IJsonRechnung {
 })
 export class RechnungService {
   private allRechnung: BehaviorSubject<IRechnung[]> = new BehaviorSubject([]);
-  private hot = false;
+  private fullDemoData: IRechnung[];
 
   constructor() { }
 
   getAllRechnung(): Observable<IRechnung[]> {
-    // init the BehaviorSubject if service wasn't used before
-    if (!this.hot) {
-      this.allRechnung.next(this.normalizeDemoJson(demoData));
-      this.hot = true;
-    }
+    if (!Array.isArray(this.fullDemoData)) {
+      this.fullDemoData = this.normalizeDemoJson(demoData);
 
+      this.allRechnung.next(this.fullDemoData);
+    }
     return this.allRechnung;
+  }
+
+  filter(pageIndex: number, pageSize: number): void {
+    console.log(pageIndex);
+
+    const chunkOffset = pageIndex * pageSize;
+
+    this.allRechnung.next(this.fullDemoData.slice(chunkOffset, chunkOffset + pageSize));
   }
 
   private normalizeDemoJson(rawJson?: IJsonRechnung[]): IRechnung[] {

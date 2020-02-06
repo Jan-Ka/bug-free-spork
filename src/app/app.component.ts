@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IRechnung } from 'shared/IRechnung';
 import { RechnungService } from './rechnung.service';
 import { Observable } from 'rxjs';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,16 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'bug-free-spork';
   displayedColumns: string[] = ['Rechnungsnummer', 'Rechnungsempfänger', 'Betrag Netto', 'Datum'];
-  dataSource: Observable<IRechnung[]>;
+  dataSource$: Observable<IRechnung[]>;
+  pageSize = 10;
 
   constructor(private rechnungService: RechnungService) { }
 
   ngOnInit() {
-    this.dataSource = this.rechnungService.getAllRechnung();
+    this.dataSource$ = this.rechnungService.getAllRechnung();
+  }
+
+  handlePageEvent(e: PageEvent) {
+    this.rechnungService.filter(e.pageIndex, e.pageSize);
   }
 }
