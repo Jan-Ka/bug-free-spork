@@ -1,23 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IRechnung } from 'shared/IRechnung';
-
-const StaticData: IRechnung[] = [
-  {
-    'Rechnungs-UID': '123abc',
-    Rechnungsnummer: 'RECH-123',
-    Rechnungsempfänger: 'Christopher Eo, Firma GmbH, Gebäudestraße 1, 1234 Stadtort',
-    'Betrag Netto': 12,
-    Datum: new Date()
-  }
-];
+import { RechnungService } from './rechnung.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'bug-free-spork';
   displayedColumns: string[] = ['Rechnungsnummer', 'Rechnungsempfänger', 'Betrag Netto', 'Datum'];
-  dataSource = StaticData;
+  dataSource: Observable<IRechnung[]>;
+
+  constructor(private rechnungService: RechnungService) { }
+
+  ngOnInit() {
+    this.dataSource = this.rechnungService.getAllRechnung();
+  }
 }
