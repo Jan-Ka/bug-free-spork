@@ -3,6 +3,8 @@ import { RechnungService } from './rechnung.service';
 import { PageEvent } from '@angular/material/paginator';
 import { RechnungDataSource } from './rechnung-data-source';
 import { IRechnung } from 'shared/IRechnung';
+import { MatDialog } from '@angular/material/dialog';
+import { RechnungpositionDetailDialogComponent } from './rechnungposition-detail-dialog/rechnungposition-detail-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +17,7 @@ export class AppComponent implements OnInit {
   dataSource: RechnungDataSource;
   pageSize = 10;
 
-  constructor(private rechnungService: RechnungService) { }
+  constructor(public dialog: MatDialog, private rechnungService: RechnungService) { }
 
   ngOnInit() {
     this.dataSource = new RechnungDataSource(this.rechnungService);
@@ -26,6 +28,8 @@ export class AppComponent implements OnInit {
   }
 
   handleClick(row: IRechnung) {
-    console.log(row);
+    // console.log(row);
+    const dialogRef = this.dialog.open(RechnungpositionDetailDialogComponent, {
+    });
   }
 }
