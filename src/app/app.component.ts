@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RechnungService } from './rechnung.service';
 import { PageEvent } from '@angular/material/paginator';
 import { RechnungDataSource } from './rechnung-data-source';
+import { IRechnung } from 'shared/IRechnung';
 
 @Component({
   selector: 'app-root',
@@ -22,5 +23,9 @@ export class AppComponent implements OnInit {
 
   handlePageEvent(e: PageEvent) {
     this.rechnungService.filter(e.pageIndex, e.pageSize);
+  }
+
+  handleClick(row: IRechnung) {
+    console.log(row);
   }
 }
