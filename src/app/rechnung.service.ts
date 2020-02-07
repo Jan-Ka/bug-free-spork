@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { IRechnung } from '../../shared/IRechnung';
 
-import demoData from '../../rechnung_demo_2.json';
+import demoData from '../environments/rechnung_demo_2.json';
 
 interface IJsonRechnung {
   'Rechnungs-UID': string;
