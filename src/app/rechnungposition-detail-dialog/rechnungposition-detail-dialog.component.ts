@@ -13,4 +13,8 @@ export class RechnungpositionDetailDialogComponent implements OnInit {
   ngOnInit() {
   }
 
+  close() {
+    this.dialogRef.close();
+  }
+
 }
