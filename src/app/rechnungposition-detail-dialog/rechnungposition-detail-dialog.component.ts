@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export interface IRechnungpositionDetailDialogData {
+  'Rechnungs-UID': string;
   Rechnungsnummer: string;
 }
 
@@ -11,11 +12,13 @@ export interface IRechnungpositionDetailDialogData {
   styleUrls: ['./rechnungposition-detail-dialog.component.scss']
 })
 export class RechnungpositionDetailDialogComponent implements OnInit {
+  private rechnungsUid: string;
 
   rechnungsnummer: string;
 
   constructor(public dialogRef: MatDialogRef<RechnungpositionDetailDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) data: IRechnungpositionDetailDialogData) {
+    @Inject(MAT_DIALOG_DATA) data: IRechnungpositionDetailDialogData) {
+    this.rechnungsUid = data["Rechnungs-UID"];
     this.rechnungsnummer = data.Rechnungsnummer;
   }
 
