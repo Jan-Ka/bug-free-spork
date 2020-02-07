@@ -30,6 +30,9 @@ export class AppComponent implements OnInit {
   handleClick(row: IRechnung) {
     // console.log(row);
     const dialogRef = this.dialog.open(RechnungpositionDetailDialogComponent, {
+      data: {
+        Rechnungsnummer: row.Rechnungsnummer
+      }
     });
   }
 }

@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+export interface IRechnungpositionDetailDialogData {
+  Rechnungsnummer: string;
+}
 
 @Component({
   selector: 'app-rechnungposition-detail-dialog',
@@ -8,7 +12,12 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class RechnungpositionDetailDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<RechnungpositionDetailDialogComponent>) { }
+  rechnungsnummer: string;
+
+  constructor(public dialogRef: MatDialogRef<RechnungpositionDetailDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) data: IRechnungpositionDetailDialogData) {
+    this.rechnungsnummer = data.Rechnungsnummer;
+  }
 
   ngOnInit() {
   }
