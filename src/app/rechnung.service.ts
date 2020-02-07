@@ -18,25 +18,30 @@ interface IJsonRechnung {
 })
 export class RechnungService {
   private allRechnung: BehaviorSubject<IRechnung[]> = new BehaviorSubject([]);
+  private filterRechnung: BehaviorSubject<IRechnung[]> = new BehaviorSubject([]);
+  private availableRechnung: BehaviorSubject<number> = new BehaviorSubject(0);
+
   private fullDemoData: IRechnung[];
 
-  constructor() { }
-
-  getAllRechnung(): Observable<IRechnung[]> {
-    if (!Array.isArray(this.fullDemoData)) {
-      this.fullDemoData = this.normalizeDemoJson(demoData);
-
-      this.allRechnung.next(this.fullDemoData);
-    }
-    return this.allRechnung;
+  constructor() {
+    this.fullDemoData = this.normalizeDemoJson(demoData);
   }
 
-  filter(pageIndex: number, pageSize: number): void {
-    console.log(pageIndex);
+  getAllRechnung(): Observable<IRechnung[]> {
+    return this.allRechnung.asObservable();
+  }
 
+  filter(pageIndex: number, pageSize: number): Observable<IRechnung[]> {
     const chunkOffset = pageIndex * pageSize;
+    this.filterRechnung.next(this.fullDemoData.slice(chunkOffset, chunkOffset + pageSize));
 
-    this.allRechnung.next(this.fullDemoData.slice(chunkOffset, chunkOffset + pageSize));
+    return this.filterRechnung.asObservable();
+  }
+
+  available(): Observable<number> {
+    this.availableRechnung.next(this.fullDemoData.length);
+
+    return this.availableRechnung.asObservable();
   }
 
   private normalizeDemoJson(rawJson?: IJsonRechnung[]): IRechnung[] {

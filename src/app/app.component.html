@@ -3,10 +3,7 @@
 </mat-toolbar>
 
 <div class="container">
-  <mat-paginator #paginator [length]="(dataSource$ | async)?.length" [pageSize]="pageSize" (page)="pageEvent = handlePageEvent($event)">
-  </mat-paginator>
-
-  <table mat-table [dataSource]="dataSource$">
+  <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="Rechnungsnummer">
       <th mat-header-cell *matHeaderCellDef>Rechnungsnummer</th>
       <td mat-cell *matCellDef="let rechnung">{{rechnung['Rechnungsnummer']}}</td>
@@ -30,4 +27,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <mat-paginator [length]="dataSource.available() | async" [pageSize]="pageSize" (page)="pageEvent = handlePageEvent($event)">
+  </mat-paginator>
 </div>
