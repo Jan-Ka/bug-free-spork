@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { IRechnung } from '../../shared/IRechnung';
+import { environment } from 'src/environments/environment';
 
-import demoData from '../environments/rechnung_demo_2.json';
 
 interface IJsonRechnung {
   'Rechnungs-UID': string;
@@ -24,7 +24,11 @@ export class RechnungService {
   private fullDemoData: IRechnung[];
 
   constructor() {
-    this.fullDemoData = this.normalizeDemoJson(demoData);
+    if (environment.hasOwnProperty('demoData') && Array.isArray(environment.demoData)) {
+      this.fullDemoData = this.normalizeDemoJson(environment.demoData);
+    } else {
+      this.fullDemoData = [];
+    }
   }
 
   getAllRechnung(): Observable<IRechnung[]> {
