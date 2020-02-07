@@ -4,7 +4,10 @@ import { PageEvent } from '@angular/material/paginator';
 import { RechnungDataSource } from './rechnung-data-source';
 import { IRechnung } from 'shared/IRechnung';
 import { MatDialog } from '@angular/material/dialog';
-import { RechnungpositionDetailDialogComponent, IRechnungpositionDetailDialogData } from './rechnungposition-detail-dialog/rechnungposition-detail-dialog.component';
+import {
+  RechnungpositionDetailDialogComponent,
+  IRechnungpositionDetailDialogData
+} from './rechnungposition-detail-dialog/rechnungposition-detail-dialog.component';
 
 @Component({
   selector: 'app-root',
