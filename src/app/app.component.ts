@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { RechnungService } from './rechnung.service';
 import { PageEvent } from '@angular/material/paginator';
 import { RechnungDataSource } from './rechnung-data-source';
+import { IRechnung } from 'shared/IRechnung';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  RechnungpositionDetailDialogComponent,
+  IRechnungpositionDetailDialogData
+} from './rechnungposition-detail-dialog/rechnungposition-detail-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +20,7 @@ export class AppComponent implements OnInit {
   dataSource: RechnungDataSource;
   pageSize = 10;
 
-  constructor(private rechnungService: RechnungService) { }
+  constructor(public dialog: MatDialog, private rechnungService: RechnungService) { }
 
   ngOnInit() {
     this.dataSource = new RechnungDataSource(this.rechnungService);
@@ -22,5 +28,17 @@ export class AppComponent implements OnInit {
 
   handlePageEvent(e: PageEvent) {
     this.rechnungService.filter(e.pageIndex, e.pageSize);
+  }
+
+  handleClick(row: IRechnung) {
+    // console.log(row);
+    const data: IRechnungpositionDetailDialogData = {
+      'Rechnungs-UID': row['Rechnungs-UID'],
+      Rechnungsnummer: row.Rechnungsnummer
+    };
+
+    const dialogRef = this.dialog.open(RechnungpositionDetailDialogComponent, {
+      data
+    });
   }
 }
