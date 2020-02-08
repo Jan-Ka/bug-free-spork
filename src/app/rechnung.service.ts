@@ -24,8 +24,8 @@ export class RechnungService {
   private fullDemoData: IRechnung[];
 
   constructor() {
-    if (environment.hasOwnProperty('demoData') && Array.isArray(environment.demoData)) {
-      this.fullDemoData = this.normalizeDemoJson(environment.demoData);
+    if (environment.demoData !== null) {
+      this.fullDemoData = this.normalizeDemoJson(environment.demoData.rechnung);
     } else {
       this.fullDemoData = [];
     }
@@ -54,11 +54,7 @@ export class RechnungService {
     return rawJson.map((val: IJsonRechnung) => {
       return {
         'Rechnungs-UID': val['Rechnungs-UID'],
-        // the content of `Rechnungsnummer` isn't really important
-        // but we expect strings of equal length
-        // `Rechnungs-UID` should be a GUID normally and we can use the last
-        // segment to simulate a 0-padded `Rechnungsnummer`
-        Rechnungsnummer: `DEMO-${val['Rechnungs-UID'].split('-').slice(-1).join()}`,
+        Rechnungsnummer: val.Rechnungsnummer,
         Rechnungsempfänger: val.Rechnungsempfänger,
         'Betrag Netto': parseFloat(val['Betrag Netto']),
         Datum: new Date(val.Datum)
