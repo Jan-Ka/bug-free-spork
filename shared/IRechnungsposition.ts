@@ -16,5 +16,5 @@ export interface IRechnungsposition {
     /**
      * net price of ordered product
      */
-    'Produkt Betrag Netto': string;
+    'Produkt Betrag Netto': number;
 }
