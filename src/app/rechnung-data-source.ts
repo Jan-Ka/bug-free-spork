@@ -14,11 +14,11 @@ export class RechnungDataSource implements DataSource<IRechnung> {
     constructor(private businessLogicService: BusinessLogicService) { }
 
     connect(collectionViewer: CollectionViewer): Observable<IRechnung[] | readonly IRechnung[]> {
-        this.rechnungServiceSubscription = this.businessLogicService.filter(0, 10).subscribe(value => {
+        this.rechnungServiceSubscription = this.businessLogicService.filterRechnung(0, 10).subscribe(value => {
             this.sourceSubject.next(value);
         });
 
-        this.availableServiceSubscription = this.businessLogicService.available().subscribe(value => {
+        this.availableServiceSubscription = this.businessLogicService.availableRechnung().subscribe(value => {
             this.availableSubject.next(value);
         });
 
@@ -33,7 +33,7 @@ export class RechnungDataSource implements DataSource<IRechnung> {
     }
 
     filter(pageIndex: number, pageSize: number): void {
-        this.businessLogicService.filter(pageIndex, pageSize);
+        this.businessLogicService.filterRechnung(pageIndex, pageSize);
     }
 
     available(): Observable<number> {

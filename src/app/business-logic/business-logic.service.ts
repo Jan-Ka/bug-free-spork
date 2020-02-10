@@ -12,11 +12,11 @@ export class BusinessLogicService {
 
   constructor(private injector: Injector) { }
 
-  filter(pageIndex: number, pageSize: number): Observable<IRechnung[]> {
+  filterRechnung(pageIndex: number, pageSize: number): Observable<IRechnung[]> {
     return this.getRechnungService().filter(pageIndex, pageSize);
   }
 
-  available(): Observable<number> {
+  availableRechnung(): Observable<number> {
     return this.getRechnungService().available();
   }
 
