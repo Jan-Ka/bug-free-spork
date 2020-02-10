@@ -2,12 +2,13 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import rechnungDemoData from '../environments/bug-free-spork_demo_rechnung.json';
+import demoData from '../environments/bug-free-spork_demo.json';
 
 export const environment = {
   production: false,
   demoData: {
-    rechnung: rechnungDemoData
+    rechnung: demoData.updatedRechnungArray,
+    produkt: demoData.rechnungspositionArray
   }
 };
 
