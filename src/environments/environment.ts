@@ -8,7 +8,7 @@ export const environment = {
   production: false,
   demoData: {
     rechnung: demoData.updatedRechnungArray,
-    produkt: demoData.rechnungspositionArray
+    rechnungsposition: demoData.rechnungspositionArray
   }
 };
 
