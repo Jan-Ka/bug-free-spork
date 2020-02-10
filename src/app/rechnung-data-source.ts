@@ -2,7 +2,7 @@ import { IRechnung } from 'shared/IRechnung';
 import { DataSource } from '@angular/cdk/table';
 import { CollectionViewer } from '@angular/cdk/collections';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
-import { RechnungService } from './business-logic/rechnung.service';
+import { BusinessLogicService } from './business-logic/business-logic.service';
 
 export class RechnungDataSource implements DataSource<IRechnung> {
     private sourceSubject: BehaviorSubject<IRechnung[]> = new BehaviorSubject([]);
@@ -11,14 +11,14 @@ export class RechnungDataSource implements DataSource<IRechnung> {
     private rechnungServiceSubscription: Subscription;
     private availableServiceSubscription: Subscription;
 
-    constructor(private rechnungService: RechnungService) { }
+    constructor(private businessLogicService: BusinessLogicService) { }
 
     connect(collectionViewer: CollectionViewer): Observable<IRechnung[] | readonly IRechnung[]> {
-        this.rechnungServiceSubscription = this.rechnungService.filter(0, 10).subscribe(value => {
+        this.rechnungServiceSubscription = this.businessLogicService.filter(0, 10).subscribe(value => {
             this.sourceSubject.next(value);
         });
 
-        this.availableServiceSubscription = this.rechnungService.available().subscribe(value => {
+        this.availableServiceSubscription = this.businessLogicService.available().subscribe(value => {
             this.availableSubject.next(value);
         });
 
@@ -30,6 +30,10 @@ export class RechnungDataSource implements DataSource<IRechnung> {
         this.availableServiceSubscription.unsubscribe();
 
         this.sourceSubject.complete();
+    }
+
+    filter(pageIndex: number, pageSize: number): void {
+        this.businessLogicService.filter(pageIndex, pageSize);
     }
 
     available(): Observable<number> {
