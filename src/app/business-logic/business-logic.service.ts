@@ -3,6 +3,7 @@ import { RechnungService } from './rechnung.service';
 import { Observable } from 'rxjs';
 import { IRechnung, IRechnungsposition } from 'shared/shared.module';
 import { RechnungspositionService } from './rechnungsposition.service';
+import { LieferstatusService } from './lieferstatus.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class BusinessLogicService {
 
   private rechnungService: RechnungService = null;
   private rechnungspositionService: RechnungspositionService = null;
+  private lieferstatusService: LieferstatusService = null;
 
   constructor(private injector: Injector) { }
 
@@ -40,5 +42,13 @@ export class BusinessLogicService {
     }
 
     return this.rechnungspositionService;
+  }
+
+  private getLieferstatusService(): LieferstatusService {
+    if (this.lieferstatusService === null) {
+      this.lieferstatusService = this.injector.get(LieferstatusService);
+    }
+
+    return this.lieferstatusService;
   }
 }

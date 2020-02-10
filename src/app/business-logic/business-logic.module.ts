@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RechnungService } from './rechnung.service';
 import { BusinessLogicService } from './business-logic.service';
 import { RechnungspositionService } from './rechnungsposition.service';
+import { LieferstatusService } from './lieferstatus.service';
 
 
 
@@ -14,6 +15,7 @@ import { RechnungspositionService } from './rechnungsposition.service';
   providers: [
     RechnungService,
     RechnungspositionService,
+    LieferstatusService,
 
     BusinessLogicService
   ]
