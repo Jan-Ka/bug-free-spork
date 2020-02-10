@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { IRechnung } from '../../shared/IRechnung';
+import { IRechnung } from '../../../shared/IRechnung';
 import { environment } from 'src/environments/environment';
 
 interface IJsonRechnung {

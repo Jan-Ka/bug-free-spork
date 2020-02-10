@@ -2,7 +2,7 @@ import { IRechnung } from 'shared/IRechnung';
 import { DataSource } from '@angular/cdk/table';
 import { CollectionViewer } from '@angular/cdk/collections';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
-import { RechnungService } from './rechnung.service';
+import { RechnungService } from './business-logic/rechnung.service';
 
 export class RechnungDataSource implements DataSource<IRechnung> {
     private sourceSubject: BehaviorSubject<IRechnung[]> = new BehaviorSubject([]);
