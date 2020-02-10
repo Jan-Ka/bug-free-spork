@@ -2,8 +2,8 @@
  * Tool Script to generate Demo Data from external partial JSON Data
  */
 
-import rechnungDemoData from '../src/environments/bug-free-spork_demo_rechnung.json';
-import produktDemoData from '../src/environments/bug-free-spork_demo_produkt.json';
+import rechnungDemoData from './bug-free-spork_demo_rechnung.json';
+import produktDemoData from './bug-free-spork_demo_produkt.json';
 
 import { IRechnung, IRechnungsposition } from '../shared/shared.module';
 
