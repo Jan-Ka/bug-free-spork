@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RechnungService } from './business-logic/rechnung.service';
 import { PageEvent } from '@angular/material/paginator';
 import { RechnungDataSource } from './rechnung-data-source';
 import { IRechnung } from 'shared/IRechnung';
 import { MatDialog } from '@angular/material/dialog';
+import { BusinessLogicService } from './business-logic/business-logic.service';
 import {
   RechnungpositionDetailDialogComponent,
   IRechnungpositionDetailDialogData
@@ -20,14 +20,14 @@ export class AppComponent implements OnInit {
   dataSource: RechnungDataSource;
   pageSize = 10;
 
-  constructor(public dialog: MatDialog, private rechnungService: RechnungService) { }
+  constructor(public dialog: MatDialog, private businessLogicService: BusinessLogicService) { }
 
   ngOnInit() {
-    this.dataSource = new RechnungDataSource(this.rechnungService);
+    this.dataSource = new RechnungDataSource(this.businessLogicService);
   }
 
   handlePageEvent(e: PageEvent) {
-    this.rechnungService.filter(e.pageIndex, e.pageSize);
+    this.dataSource.filter(e.pageIndex, e.pageSize);
   }
 
   handleClick(row: IRechnung) {
