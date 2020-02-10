@@ -72,7 +72,12 @@ export class RechnungspositionService {
     const result = [];
 
     indices.sort((a, b) => a - b);
-    indices.forEach((val, index) => source.splice(val - index, 1));
+
+    // maybe group by continuing indices and splice?
+    // filter by index?
+    for (const index of indices) {
+      result.push(source[index]);
+    }
 
     return result;
   }
@@ -84,7 +89,9 @@ export class RechnungspositionService {
       return throwError(`ArgumentException: ${id} is not a valid 'Rechnungs-UID'`);
     }
 
-    this.allRechnungsposition.next(RechnungspositionService.getDemoDataByIndices(indices, this.rechnungspositionDemoData));
+    const demoDataByIndices = RechnungspositionService.getDemoDataByIndices(indices, this.rechnungspositionDemoData);
+
+    this.allRechnungsposition.next(demoDataByIndices);
 
     return this.allRechnungsposition.asObservable();
   }
