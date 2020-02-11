@@ -14,33 +14,33 @@ interface IJsonRechnungsposition {
   providedIn: BusinessLogicModule
 })
 export class RechnungspositionService {
-
-  constructor() {
-    if (environment.demoData !== null) {
-      this.rechnungspositionDemoData = RechnungspositionService.reviveRechnungspositionDemoData(environment.demoData.rechnungsposition);
-
-      this.indexMap = RechnungspositionService.generateDemoDataIndices(this.rechnungspositionDemoData);
-    } else {
-      this.rechnungspositionDemoData = [];
-    }
-  }
   private allRechnungsposition: BehaviorSubject<IRechnungsposition[]> = new BehaviorSubject([]);
 
   /**
    * Contains all rechnungspositionDemoData index for a given Rechnungs-UID
    * to speed up search within demo data
    */
-  private indexMap: Map<string, number[]> = new Map();
-  private rechnungspositionDemoData: IRechnungsposition[];
+  private readonly indexMap: Map<string, number[]> = new Map();
+  private readonly rechnungspositionDemoData: IRechnungsposition[];
+
+  constructor() {
+    if (environment.demoData !== null) {
+      RechnungspositionService.reviveRechnungspositionDemoData(this.rechnungspositionDemoData, environment.demoData.rechnungsposition);
+
+      RechnungspositionService.generateDemoDataIndices(this.indexMap, this.rechnungspositionDemoData);
+    } else {
+      this.rechnungspositionDemoData = [];
+    }
+  }
 
   /**
    * Revive the imported demo data to the expected format
    * @param importedData data read from JSON Module
    */
-  private static reviveRechnungspositionDemoData(importedData?: IJsonRechnungsposition[]): IRechnungsposition[] {
+  private static reviveRechnungspositionDemoData(target: IRechnungsposition[], importedData?: IJsonRechnungsposition[]): void {
     // missing file, empty file, broken JSON, wrong JSON are all be handled by the import
     // anything that makes it to here will crash in the frontend which is acceptable for this project
-    return importedData.map((val: IJsonRechnungsposition) => {
+    target = importedData.map((val: IJsonRechnungsposition) => {
       return {
         'Rechnungs-UID': val['Rechnungs-UID'],
         'Produkt Name': val['Produkt Name'],
@@ -49,24 +49,20 @@ export class RechnungspositionService {
     });
   }
 
-  private static generateDemoDataIndices(source: IRechnungsposition[]): Map<string, number[]> {
-    const result = new Map();
+  private static generateDemoDataIndices(target: Map<string, number[]>, source: IRechnungsposition[]): void {
+    source.forEach((rechnungsposition, index) => {
+      const rechnungsUID = rechnungsposition['Rechnungs-UID'];
 
-    for (let i = 0; i < source.length; i++) {
-      const rechnungsposition = source[i];
-
-      if (!result.has(rechnungsposition['Rechnungs-UID'])) {
-        result.set(rechnungsposition['Rechnungs-UID'], [
-          i
+      if (!target.has(rechnungsUID)) {
+        target.set(rechnungsUID, [
+          index
         ]);
 
-        continue;
+        return;
       }
 
-      result.get(rechnungsposition['Rechnungs-UID']).push(i);
-    }
-
-    return result;
+      target.get(rechnungsUID).push(index);
+    });
   }
 
   private static getDemoDataByIndices(indices: number[], source: IRechnungsposition[]): IRechnungsposition[] {
@@ -83,6 +79,10 @@ export class RechnungspositionService {
     return result;
   }
 
+  /**
+   * Receive all `IRechnungsposition` for provided `Rechnungs-UID`
+   * @param id `Rechnungs-UID`
+   */
   getAllRechnungsposition(id: string): Observable<IRechnungsposition[]> {
     const indices = this.indexMap.get(id);
 
