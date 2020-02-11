@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ILieferstatus } from 'shared/ILieferstatus';
 import { environment } from 'src/environments/environment';
-import { map, toArray, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { RechnungspositionService } from './rechnungsposition.service';
 import { Observable } from 'rxjs';
 
@@ -9,28 +9,25 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LieferstatusService {
-  private lookup: Map<string, string> = new Map();
-  private lieferstatusDemoData: ILieferstatus[];
+  private readonly lookup: Map<string, string> = new Map();
+  private readonly lieferstatusDemoData: ILieferstatus[];
 
   constructor(private rechnungspositionService: RechnungspositionService) {
-    if (environment.demoData !== null) {
-      this.lieferstatusDemoData = environment.demoData.lieferstatus;
-
-      this.lookup = LieferstatusService.generateDemoDataLookup(this.lieferstatusDemoData);
-    } else {
-      this.lieferstatusDemoData = null;
-    }
+    // retrieve lieferstatus demo data if available
+    this.lieferstatusDemoData = environment.demoData !== null ? environment.demoData.lieferstatus : [];
   }
 
-  private static generateDemoDataLookup(source: ILieferstatus[]): Map<string, string> {
-    const result = new Map(source.map((val) => {
-      return [
-        val['Produkt Name'],
-        val.Lieferstatus
-      ];
-    }));
-
-    return result;
+  private static populateLieferstatusLookup(target: Map<string, string>, source: ILieferstatus[]): void {
+    source
+      .map((lieferstatus) => {
+        return [
+          lieferstatus['Produkt Name'],
+          lieferstatus.Lieferstatus
+        ];
+      })
+      .forEach((kvp) => {
+        target.set.apply(target, kvp);
+      });
   }
 
   /**
@@ -43,10 +40,18 @@ export class LieferstatusService {
         return value.map((val) => {
           return {
             'Produkt Name': val['Produkt Name'],
-            Lieferstatus: this.lookup.get(val['Produkt Name'])
+            Lieferstatus: this.getLieferstatusForProduktName(val['Produkt Name'])
           };
         });
       }),
     );
+  }
+
+  private getLieferstatusForProduktName(produktName: string): string {
+    if (this.lookup.size === 0) {
+      LieferstatusService.populateLieferstatusLookup(this.lookup, this.lieferstatusDemoData);
+    }
+
+    return this.lookup.get(produktName);
   }
 }
