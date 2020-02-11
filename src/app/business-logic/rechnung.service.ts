@@ -16,7 +16,6 @@ interface IJsonRechnung {
   providedIn: 'root'
 })
 export class RechnungService {
-  private allRechnung: BehaviorSubject<IRechnung[]> = new BehaviorSubject([]);
   private filterRechnung: BehaviorSubject<IRechnung[]> = new BehaviorSubject([]);
   private availableRechnung: BehaviorSubject<number> = new BehaviorSubject(0);
 
@@ -28,10 +27,6 @@ export class RechnungService {
     } else {
       this.rechnungDemoData = [];
     }
-  }
-
-  getAllRechnung(): Observable<IRechnung[]> {
-    return this.allRechnung.asObservable();
   }
 
   filter(pageIndex: number, pageSize: number): Observable<IRechnung[]> {
