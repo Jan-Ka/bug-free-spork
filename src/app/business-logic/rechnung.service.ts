@@ -22,31 +22,14 @@ export class RechnungService {
   private rechnungDemoData: IRechnung[];
 
   constructor() {
-    if (environment.demoData !== null) {
-      this.rechnungDemoData = this.reviveRechnungDemoData(environment.demoData.rechnung);
-    } else {
-      this.rechnungDemoData = [];
-    }
-  }
-
-  filter(pageIndex: number, pageSize: number): Observable<IRechnung[]> {
-    const chunkOffset = pageIndex * pageSize;
-    this.filterRechnung.next(this.rechnungDemoData.slice(chunkOffset, chunkOffset + pageSize));
-
-    return this.filterRechnung.asObservable();
-  }
-
-  available(): Observable<number> {
-    this.availableRechnung.next(this.rechnungDemoData.length);
-
-    return this.availableRechnung.asObservable();
+    this.rechnungDemoData = environment.demoData !== null ? RechnungService.reviveRechnungDemoData(environment.demoData.rechnung) : [];
   }
 
   /**
    * Revive the imported demo data to the expected format
    * @param importedData data read from JSON Module
    */
-  private reviveRechnungDemoData(importedData?: IJsonRechnung[]): IRechnung[] {
+  private static reviveRechnungDemoData(importedData?: IJsonRechnung[]): IRechnung[] {
     // missing file, empty file, broken JSON, wrong JSON are all be handled by the import
     // anything that makes it to here will crash in the frontend which is acceptable for this project
     return importedData.map((val: IJsonRechnung) => {
@@ -58,5 +41,26 @@ export class RechnungService {
         Datum: new Date(val.Datum)
       };
     });
+  }
+
+  /**
+   * Retrieve a page of `IRechnung`
+   * @param pageIndex offset of first item
+   * @param pageSize max number of received items
+   */
+  filter(pageIndex: number, pageSize: number): Observable<IRechnung[]> {
+    const chunkOffset = pageIndex * pageSize;
+    this.filterRechnung.next(this.rechnungDemoData.slice(chunkOffset, chunkOffset + pageSize));
+
+    return this.filterRechnung.asObservable();
+  }
+
+  /**
+   * Retrieve total count of available `IRechnung`
+   */
+  available(): Observable<number> {
+    this.availableRechnung.next(this.rechnungDemoData.length);
+
+    return this.availableRechnung.asObservable();
   }
 }
