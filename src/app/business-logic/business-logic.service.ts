@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { RechnungService } from './rechnung.service';
 import { Observable } from 'rxjs';
-import { IRechnung, IRechnungsposition } from 'shared/shared.module';
+import { IRechnung, IRechnungsposition, ILieferstatus } from 'shared/shared.module';
 import { RechnungspositionService } from './rechnungsposition.service';
 import { LieferstatusService } from './lieferstatus.service';
 
@@ -26,6 +26,10 @@ export class BusinessLogicService {
 
   getAllRechnungsposition(id: string): Observable<IRechnungsposition[]> {
     return this.getRechnungspositionService().getAllRechnungsposition(id);
+  }
+
+  getAllRechnungLieferstatus(id: string): Observable<ILieferstatus[]> {
+    return this.getLieferstatusService().getAllRechnungLieferstatus(id);
   }
 
   private getRechnungService(): RechnungService {
