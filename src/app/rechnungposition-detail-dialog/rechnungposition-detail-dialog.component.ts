@@ -18,20 +18,20 @@ export class RechnungpositionDetailDialogComponent implements OnInit {
   displayedColumns = ['Produkt Name', 'Produkt Betrag Netto'];
   rechnungspositionArray$: Observable<IRechnungsposition[]>;
 
-  private rechnungsUid: string;
+  RechnungsUID: string;
 
-  rechnungsnummer: string;
+  Rechnungsnummer: string;
 
   constructor(
     private businessLogicService: BusinessLogicService,
     public dialogRef: MatDialogRef<RechnungpositionDetailDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data: IRechnungpositionDetailDialogData) {
-    this.rechnungsUid = data['Rechnungs-UID'];
-    this.rechnungsnummer = data.Rechnungsnummer;
+    this.RechnungsUID = data['Rechnungs-UID'];
+    this.Rechnungsnummer = data.Rechnungsnummer;
   }
 
   ngOnInit() {
-    this.rechnungspositionArray$ = this.businessLogicService.getAllRechnungsposition(this.rechnungsUid);
+    this.rechnungspositionArray$ = this.businessLogicService.getAllRechnungsposition(this.RechnungsUID);
   }
 
   close() {
