@@ -28,6 +28,6 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="handleClick(row)"></tr>
   </table>
 
-  <mat-paginator [length]="dataSource.available() | async" [pageSize]="pageSize" (page)="pageEvent = handlePageEvent($event)">
+  <mat-paginator [length]="dataSource.available() | async" [pageSize]="pageSize" (page)="handlePageEvent($event)">
   </mat-paginator>
 </div>
