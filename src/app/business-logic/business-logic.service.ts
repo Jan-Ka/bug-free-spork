@@ -1,12 +1,13 @@
+import { BusinessLogicModule } from './business-logic.module';
 import { Injectable, Injector, Type, InjectionToken } from '@angular/core';
-import { RechnungService } from './rechnung.service';
-import { Observable } from 'rxjs';
 import { IRechnung, IRechnungsposition, ILieferstatus } from 'shared/shared.module';
-import { RechnungspositionService } from './rechnungsposition.service';
 import { LieferstatusService } from './lieferstatus.service';
+import { Observable } from 'rxjs';
+import { RechnungService } from './rechnung.service';
+import { RechnungspositionService } from './rechnungsposition.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: BusinessLogicModule
 })
 export class BusinessLogicService {
 

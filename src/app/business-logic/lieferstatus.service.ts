@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
-import { ILieferstatus } from 'shared/ILieferstatus';
+import { BusinessLogicModule } from './business-logic.module';
 import { environment } from 'src/environments/environment';
+import { ILieferstatus } from 'shared/ILieferstatus';
+import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { RechnungspositionService } from './rechnungsposition.service';
 import { Observable } from 'rxjs';
+import { RechnungspositionService } from './rechnungsposition.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: BusinessLogicModule
 })
 export class LieferstatusService {
   private readonly lookup: Map<string, string> = new Map();

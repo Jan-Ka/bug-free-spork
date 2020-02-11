@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { IRechnungsposition } from 'shared/shared.module';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { BusinessLogicModule } from './business-logic.module';
+import { environment } from 'src/environments/environment';
+import { Injectable } from '@angular/core';
+import { IRechnungsposition } from 'shared/shared.module';
 
 interface IJsonRechnungsposition {
   'Rechnungs-UID': string;
@@ -10,7 +11,7 @@ interface IJsonRechnungsposition {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: BusinessLogicModule
 })
 export class RechnungspositionService {
 

@@ -9,6 +9,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 
+import { BusinessLogicModule } from './business-logic/business-logic.module';
+
 import { RechnungpositionDetailDialogComponent } from './rechnungposition-detail-dialog/rechnungposition-detail-dialog.component';
 import { LieferstatusTableComponent } from './lieferstatus-table/lieferstatus-table.component';
 
@@ -24,7 +26,8 @@ import { LieferstatusTableComponent } from './lieferstatus-table/lieferstatus-ta
     MatToolbarModule,
     MatTableModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    BusinessLogicModule
   ],
   providers: [],
   bootstrap: [AppComponent],

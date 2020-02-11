@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-
-import { IRechnung } from '../../../shared/IRechnung';
+import { BusinessLogicModule } from './business-logic.module';
 import { environment } from 'src/environments/environment';
+import { Injectable } from '@angular/core';
+import { IRechnung } from '../../../shared/IRechnung';
 
 interface IJsonRechnung {
   'Rechnungs-UID': string;
@@ -13,7 +13,7 @@ interface IJsonRechnung {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: BusinessLogicModule
 })
 export class RechnungService {
   private filterRechnung: BehaviorSubject<IRechnung[]> = new BehaviorSubject([]);
