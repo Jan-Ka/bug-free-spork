@@ -9,7 +9,7 @@ import { ILieferstatus } from 'shared/ILieferstatus';
   styleUrls: ['./lieferstatus-table.component.scss']
 })
 export class LieferstatusTableComponent implements OnInit {
-
+  displayedColumns = ['Produkt Name', 'Lieferstatus'];
   lieferstatusArray$: Observable<ILieferstatus[]>;
 
   @Input()
