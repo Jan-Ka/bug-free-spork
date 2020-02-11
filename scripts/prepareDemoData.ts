@@ -2,10 +2,11 @@
  * Tool Script to generate Demo Data from external partial JSON Data
  */
 
-import rechnungDemoData from '../src/environments/bug-free-spork_demo_rechnung.json';
-import produktDemoData from '../src/environments/bug-free-spork_demo_produkt.json';
+import rechnungDemoData from './bug-free-spork_demo_rechnung.json';
+import produktDemoData from './bug-free-spork_demo_produkt.json';
+import lieferstatusDemoData from './bug-free-spork_demo_lieferstatus.json';
 
-import { IRechnung, IRechnungsposition } from '../shared/shared.module';
+import { IRechnung, IRechnungsposition, ILieferstatus } from '../shared/shared.module';
 
 /**
  * Copy from rechnung.service.ts
@@ -23,9 +24,30 @@ interface IJsonProdukt {
     'Produkt Betrag Netto': string;
 }
 
+interface IJsonLieferstatus {
+    'status': string;
+}
+
 interface IDemoProdukt {
     'Produkt Name': string;
     'Produkt Betrag Netto': number;
+}
+
+interface IGeneratedData {
+    /**
+     * Updated Rechnung Array matching the generated new RechnungspositionArray
+     */
+    updatedRechnungArray: IRechnung[];
+
+    /**
+     * Generated Rechnungsposition Array
+     */
+    rechnungspositionArray: IRechnungsposition[];
+
+    /**
+     * Generated Lieferstatus Array
+     */
+    lieferstatusArray: ILieferstatus[];
 }
 
 function toDistinctProduktArray(produktArray: IJsonProdukt[]): IDemoProdukt[] {
@@ -61,27 +83,27 @@ function reviveRechnungDemoData(importedData: IJsonRechnung[]): IRechnung[] {
     });
 }
 
-interface IGeneratedData {
-    /**
-     * Updated Rechnung Array matching the generated new RechnungspositionArray
-     */
-    updatedRechnungArray: IRechnung[];
-
-    /**
-     * Generated Rechnungsposition Array
-     */
-    rechnungspositionArray: IRechnungsposition[];
+/**
+ * Generates an Integer between two Numbers
+ * @param min inclusive lower end
+ * @param max exclusive top end
+ */
+function randomBetween(min: number, max: number) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
 }
 
 /**
  * Generates a Rechnungposition Array for provided rechnung array
  * @param rechnungArray reference to rechnung array
  */
-function generate(rechnungArray: IRechnung[], produktArray: IDemoProdukt[]): IGeneratedData {
+function generate(rechnungArray: IRechnung[], produktArray: IDemoProdukt[], lieferstatusArray: IJsonLieferstatus[]): IGeneratedData {
     const rechnungspositionArray: IRechnungsposition[] = [];
     // shallow copy of the input param
     // we don't want to change the passed variable by mistake
     const updatedRechnungArray = [...rechnungArray];
+    const generatedLieferstatusArray: ILieferstatus[] = [];
 
     // step through all available Rechnung items
     for (const rechnung of updatedRechnungArray) {
@@ -92,14 +114,14 @@ function generate(rechnungArray: IRechnung[], produktArray: IDemoProdukt[]): IGe
 
         // decide how many produkt we link to a rechnung item
         // it will be at least one and up to the amount of provided Produkt
-        const numPosition = Math.floor(Math.random() * produktArray.length);
+        const numPosition = randomBetween(0, produktArray.length);
         const map = new Map();
         let addedProdukt = 0;
         let rechnungspositionSum = 0;
 
         while (addedProdukt < numPosition) {
             // get a random produkt index
-            const produktIndex = Math.floor(Math.random() * produktArray.length);
+            const produktIndex = randomBetween(0, produktArray.length);
             const produkt = produktArray[produktIndex];
 
             // skip adding multiple produkts
@@ -120,19 +142,27 @@ function generate(rechnungArray: IRechnung[], produktArray: IDemoProdukt[]): IGe
 
         // sum of all rechnungsposition items is usually the sum stored inside a rechnung item
         rechnung['Betrag Netto'] = rechnungspositionSum;
+    }
 
-        console.log(`Created ${addedProdukt} Produkt items for ${rechnung['Rechnungs-UID']}`);
+    for (const produkt of produktArray) {
+        const randomStatusNum = randomBetween(0, lieferstatusArray.length);
+
+        generatedLieferstatusArray.push({
+            'Produkt Name': produkt['Produkt Name'],
+            Lieferstatus: lieferstatusArray[randomStatusNum].status
+        });
     }
 
     return {
         updatedRechnungArray,
-        rechnungspositionArray
+        rechnungspositionArray,
+        lieferstatusArray: generatedLieferstatusArray
     };
 }
 
 const distinctProduktArray = toDistinctProduktArray(produktDemoData);
 const revivedRechnungArray = reviveRechnungDemoData(rechnungDemoData);
-const generatedData = generate(revivedRechnungArray, distinctProduktArray);
+const generatedData = generate(revivedRechnungArray, distinctProduktArray, lieferstatusDemoData);
 
 console.log('Combined generated Data as JSON');
 
@@ -140,7 +170,8 @@ console.log('Combined generated Data as JSON');
 // most importantly we want to store numbers in strings to fixate available precision
 const normalizedData = {
     updatedRechnungArray: [],
-    rechnungspositionArray: []
+    rechnungspositionArray: [],
+    lieferstatusArray: generatedData.lieferstatusArray
 };
 
 normalizedData.updatedRechnungArray = generatedData.updatedRechnungArray.map((val) => {

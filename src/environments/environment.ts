@@ -8,7 +8,8 @@ export const environment = {
   production: false,
   demoData: {
     rechnung: demoData.updatedRechnungArray,
-    rechnungsposition: demoData.rechnungspositionArray
+    rechnungsposition: demoData.rechnungspositionArray,
+    lieferstatus: demoData.lieferstatusArray
   }
 };
 

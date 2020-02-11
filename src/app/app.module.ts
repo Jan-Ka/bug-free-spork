@@ -10,11 +10,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { RechnungpositionDetailDialogComponent } from './rechnungposition-detail-dialog/rechnungposition-detail-dialog.component';
+import { LieferstatusTableComponent } from './lieferstatus-table/lieferstatus-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RechnungpositionDetailDialogComponent
+    RechnungpositionDetailDialogComponent,
+    LieferstatusTableComponent
   ],
   imports: [
     BrowserModule,
