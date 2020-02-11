@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ILieferstatus } from 'shared/ILieferstatus';
 import { environment } from 'src/environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, take, withLatestFrom, finalize, toArray } from 'rxjs/operators';
+import { map, toArray, tap } from 'rxjs/operators';
 import { RechnungspositionService } from './rechnungsposition.service';
-import { IRechnungsposition } from 'shared/shared.module';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -41,12 +40,13 @@ export class LieferstatusService {
   getAllRechnungLieferstatus(id: string): Observable<ILieferstatus[]> {
     return this.rechnungspositionService.getAllRechnungsposition(id).pipe(
       map((value) => {
-        return {
-          'Produkt Name': value['Produkt Name'],
-          Lieferstatus: this.lookup.get(value['Produkt Name'])
-        } as ILieferstatus;
+        return value.map((val) => {
+          return {
+            'Produkt Name': val['Produkt Name'],
+            Lieferstatus: this.lookup.get(val['Produkt Name'])
+          };
+        });
       }),
-      toArray()
     );
   }
 }
