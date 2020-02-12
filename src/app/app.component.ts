@@ -16,7 +16,7 @@ import {
 })
 export class AppComponent implements OnInit {
   title = 'bug-free-spork';
-  displayedColumns: string[] = ['Rechnungsnummer', 'Rechnungsempfänger', 'Betrag Netto', 'Datum'];
+  displayedColumns: string[] = ['Actions', 'Rechnungsnummer', 'Rechnungsempfänger', 'Betrag Netto', 'Datum'];
   dataSource: RechnungDataSource;
   pageSize = 10;
 
@@ -30,15 +30,19 @@ export class AppComponent implements OnInit {
     this.dataSource.filter(e.pageIndex, e.pageSize);
   }
 
-  handleClick(row: IRechnung) {
+  openDetailsDialog(rechnung: IRechnung) {
     // console.log(row);
     const data: IRechnungpositionDetailDialogData = {
-      'Rechnungs-UID': row['Rechnungs-UID'],
-      Rechnungsnummer: row.Rechnungsnummer
+      'Rechnungs-UID': rechnung['Rechnungs-UID'],
+      Rechnungsnummer: rechnung.Rechnungsnummer
     };
 
     const dialogRef = this.dialog.open(RechnungpositionDetailDialogComponent, {
       data
     });
+  }
+
+  getDetailButtonAriaLabel(rechnung: IRechnung) {
+    return `Opens a detail dialog for ${rechnung.Rechnungsnummer}`;
   }
 }
