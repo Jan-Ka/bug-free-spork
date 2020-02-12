@@ -1,13 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
-import { RechnungDataSource } from './rechnung-data-source';
-import { IRechnung } from 'shared/IRechnung';
-import { MatDialog } from '@angular/material/dialog';
-import { BusinessLogicService } from './business-logic/business-logic.service';
-import {
-  RechnungpositionDetailDialogComponent,
-  IRechnungpositionDetailDialogData
-} from './rechnungposition-detail-dialog/rechnungposition-detail-dialog.component';
+
 
 @Component({
   selector: 'app-root',
@@ -16,33 +8,9 @@ import {
 })
 export class AppComponent implements OnInit {
   title = 'bug-free-spork';
-  displayedColumns: string[] = ['Actions', 'Rechnungsnummer', 'Rechnungsempfänger', 'Betrag Netto', 'Datum'];
-  dataSource: RechnungDataSource;
-  pageSize = 10;
 
-  constructor(public dialog: MatDialog, private businessLogicService: BusinessLogicService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.dataSource = new RechnungDataSource(this.businessLogicService);
-  }
-
-  handlePageEvent(e: PageEvent) {
-    this.dataSource.filter(e.pageIndex, e.pageSize);
-  }
-
-  openDetailsDialog(rechnung: IRechnung) {
-    // console.log(row);
-    const data: IRechnungpositionDetailDialogData = {
-      'Rechnungs-UID': rechnung['Rechnungs-UID'],
-      Rechnungsnummer: rechnung.Rechnungsnummer
-    };
-
-    const dialogRef = this.dialog.open(RechnungpositionDetailDialogComponent, {
-      data
-    });
-  }
-
-  getDetailButtonAriaLabel(rechnung: IRechnung) {
-    return `Opens a detail dialog for ${rechnung.Rechnungsnummer}`;
   }
 }
