@@ -14,7 +14,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { BusinessLogicModule } from './business-logic/business-logic.module';
 
-import { RechnungpositionDetailDialogComponent } from './rechnungposition-detail-dialog/rechnungposition-detail-dialog.component';
+import { RechnungspositionDetailDialogComponent } from './rechnungsposition-detail-dialog/rechnungsposition-detail-dialog.component';
 import { RechnungspositionDetailTableComponent } from './rechnungsposition-detail-table/rechnungsposition-detail-table.component';
 import { RechnungTableComponent } from './rechnung-table/rechnung-table.component';
 import { RechnungBetragNettoPipe } from './rechnung-betrag-netto.pipe';
@@ -23,7 +23,7 @@ import { GetDetailButtonTooltipPipe } from './rechnung-table/getDetailButtonTool
 @NgModule({
   declarations: [
     AppComponent,
-    RechnungpositionDetailDialogComponent,
+    RechnungspositionDetailDialogComponent,
     RechnungspositionDetailTableComponent,
     RechnungTableComponent,
     RechnungBetragNettoPipe,
@@ -43,6 +43,6 @@ import { GetDetailButtonTooltipPipe } from './rechnung-table/getDetailButtonTool
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [RechnungpositionDetailDialogComponent]
+  entryComponents: [RechnungspositionDetailDialogComponent]
 })
 export class AppModule { }

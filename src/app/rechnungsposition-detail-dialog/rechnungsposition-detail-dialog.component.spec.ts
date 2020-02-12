@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RechnungpositionDetailDialogComponent } from './rechnungposition-detail-dialog.component';
+import { RechnungspositionDetailDialogComponent } from './rechnungsposition-detail-dialog.component';
 
 describe('RechnungpositionDetailDialogComponent', () => {
-  let component: RechnungpositionDetailDialogComponent;
-  let fixture: ComponentFixture<RechnungpositionDetailDialogComponent>;
+  let component: RechnungspositionDetailDialogComponent;
+  let fixture: ComponentFixture<RechnungspositionDetailDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RechnungpositionDetailDialogComponent ]
+      declarations: [ RechnungspositionDetailDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RechnungpositionDetailDialogComponent);
+    fixture = TestBed.createComponent(RechnungspositionDetailDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

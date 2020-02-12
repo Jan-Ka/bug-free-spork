@@ -5,9 +5,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { RechnungDataSource } from '../rechnung-data-source';
 import {
-  RechnungpositionDetailDialogComponent,
-  IRechnungpositionDetailDialogData
-} from '../rechnungposition-detail-dialog/rechnungposition-detail-dialog.component';
+  RechnungspositionDetailDialogComponent,
+  IRechnungspositionDetailDialogData
+} from '../rechnungsposition-detail-dialog/rechnungsposition-detail-dialog.component';
 
 @Component({
   selector: 'app-rechnung-table',
@@ -31,12 +31,12 @@ export class RechnungTableComponent implements OnInit {
 
   openDetailsDialog(rechnung: IRechnung) {
     // console.log(row);
-    const data: IRechnungpositionDetailDialogData = {
+    const data: IRechnungspositionDetailDialogData = {
       'Rechnungs-UID': rechnung['Rechnungs-UID'],
       Rechnungsnummer: rechnung.Rechnungsnummer
     };
 
-    this.dialog.open(RechnungpositionDetailDialogComponent, {
+    this.dialog.open(RechnungspositionDetailDialogComponent, {
       width: '80vw',
       data
     });
