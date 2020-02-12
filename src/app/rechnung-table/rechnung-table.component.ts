@@ -41,8 +41,4 @@ export class RechnungTableComponent implements OnInit {
       data
     });
   }
-
-  getDetailButtonAriaLabel(rechnung: IRechnung) {
-    return `Opens a detail dialog for ${rechnung.Rechnungsnummer}`;
-  }
 }
