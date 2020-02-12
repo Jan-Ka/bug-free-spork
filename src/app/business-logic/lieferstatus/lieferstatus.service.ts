@@ -1,10 +1,10 @@
-import { BusinessLogicModule } from './business-logic.module';
+import { BusinessLogicModule } from '../business-logic.module';
 import { environment } from 'src/environments/environment';
 import { ILieferstatus } from 'shared/ILieferstatus';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { RechnungspositionService } from './rechnungsposition.service';
+import { RechnungspositionService } from '../rechnungsposition/rechnungsposition.service';
 
 @Injectable({
   providedIn: BusinessLogicModule
