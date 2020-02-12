@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { RechnungspositionDetailService, IRechnungspositionDetail } from './rechnungsposition-detail.service';
+import {
+  RechnungspositionDetailService,
+  IRechnungspositionDetail
+} from './rechnungsposition-detail-service/rechnungsposition-detail.service';
 
 @Component({
   selector: 'app-rechnungsposition-detail-table',

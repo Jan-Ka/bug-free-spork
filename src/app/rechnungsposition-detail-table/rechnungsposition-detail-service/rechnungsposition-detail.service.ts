@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BusinessLogicService } from '../business-logic/business-logic.service';
+import { BusinessLogicService } from '../../business-logic/business-logic.service';
 import { IRechnungsposition, ILieferstatus } from 'shared/shared.module';
 import { Observable, forkJoin, BehaviorSubject, of, combineLatest } from 'rxjs';
 import { catchError } from 'rxjs/operators';
