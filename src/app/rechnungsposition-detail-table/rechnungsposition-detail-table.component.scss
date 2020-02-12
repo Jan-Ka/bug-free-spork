@@ -1,0 +1,18 @@
+table {
+    width: 100%;
+}
+
+.rightalign {
+    text-align: right;
+}
+
+td {
+    &.monospaced {
+        font-family: monospace;
+    }
+}
+
+th.mat-header-cell,
+td.mat-cell {
+    padding: 0 1em 0 1em;
+}

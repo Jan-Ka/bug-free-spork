@@ -1,0 +1,20 @@
+<table mat-table [dataSource]="rechnungspositionDetail$">
+    <ng-container matColumnDef="Produkt Name">
+        <th mat-header-cell *matHeaderCellDef>Produkt Name</th>
+        <td mat-cell *matCellDef="let rechnungspositionDetail">{{rechnungspositionDetail['Produkt Name']}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Produkt Betrag Netto">
+        <th class="rightalign" mat-header-cell *matHeaderCellDef>Produkt Betrag Netto</th>
+        <td class="monospaced rightalign" mat-cell *matCellDef="let rechnungspositionDetail">
+            {{rechnungspositionDetail['Produkt Betrag Netto'] | rechnungBetragNetto}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Lieferstatus">
+        <th mat-header-cell *matHeaderCellDef>Lieferstatus</th>
+        <td mat-cell *matCellDef="let rechnungspositionDetail">{{rechnungspositionDetail.Lieferstatus}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
