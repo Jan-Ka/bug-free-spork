@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import {
   RechnungspositionDetailService,
   IRechnungspositionDetail
 } from './rechnungsposition-detail-service/rechnungsposition-detail.service';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rechnungsposition-detail-table',
@@ -13,6 +14,7 @@ import {
 export class RechnungspositionDetailTableComponent implements OnInit {
   displayedColumns = ['Produkt Name', 'Produkt Betrag Netto', 'Lieferstatus'];
   rechnungspositionDetail$: Observable<IRechnungspositionDetail[]>;
+  error = null;
 
   @Input()
   rechnungsUID: string;
@@ -20,7 +22,13 @@ export class RechnungspositionDetailTableComponent implements OnInit {
   constructor(private rechnungspositionDetailService: RechnungspositionDetailService) { }
 
   ngOnInit() {
-    this.rechnungspositionDetail$ = this.rechnungspositionDetailService.getRechnungspositionDetail(this.rechnungsUID);
+    this.rechnungspositionDetail$ = this.rechnungspositionDetailService.getRechnungspositionDetail(this.rechnungsUID).pipe(
+      catchError((error) => {
+        this.error = error;
+
+        return of([]);
+      })
+    );
   }
 
 }
