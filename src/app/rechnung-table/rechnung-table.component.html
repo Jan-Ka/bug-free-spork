@@ -1,4 +1,8 @@
 <div class="component-container">
+    <ng-container *ngIf="error">
+        <h2>Oh no!</h2>
+        <p>An error has occured: {{error}}</p>
+    </ng-container>
     <div class="table-container">
         <table mat-table [dataSource]="dataSource">
             <ng-container matColumnDef="Actions">
