@@ -15,12 +15,14 @@ import { BusinessLogicModule } from './business-logic/business-logic.module';
 
 import { RechnungpositionDetailDialogComponent } from './rechnungposition-detail-dialog/rechnungposition-detail-dialog.component';
 import { LieferstatusTableComponent } from './lieferstatus-table/lieferstatus-table.component';
+import { RechnungTableComponent } from './rechnung-table/rechnung-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RechnungpositionDetailDialogComponent,
-    LieferstatusTableComponent
+    LieferstatusTableComponent,
+    RechnungTableComponent
   ],
   imports: [
     BrowserModule,
