@@ -1,8 +1,8 @@
 import { BehaviorSubject, Observable } from 'rxjs';
-import { BusinessLogicModule } from './business-logic.module';
+import { BusinessLogicModule } from '../business-logic.module';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
-import { IRechnung } from '../../../shared/IRechnung';
+import { IRechnung } from '../../../../shared/IRechnung';
 
 interface IJsonRechnung {
   'Rechnungs-UID': string;

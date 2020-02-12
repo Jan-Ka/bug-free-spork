@@ -1,5 +1,5 @@
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { BusinessLogicModule } from './business-logic.module';
+import { BusinessLogicModule } from '../business-logic.module';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { IRechnungsposition } from 'shared/shared.module';

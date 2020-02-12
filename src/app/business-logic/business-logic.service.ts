@@ -1,10 +1,10 @@
 import { BusinessLogicModule } from './business-logic.module';
 import { Injectable, Injector, Type, InjectionToken } from '@angular/core';
 import { IRechnung, IRechnungsposition, ILieferstatus } from 'shared/shared.module';
-import { LieferstatusService } from './lieferstatus.service';
+import { LieferstatusService } from './lieferstatus/lieferstatus.service';
 import { Observable } from 'rxjs';
-import { RechnungService } from './rechnung.service';
-import { RechnungspositionService } from './rechnungsposition.service';
+import { RechnungService } from './rechnung/rechnung.service';
+import { RechnungspositionService } from './rechnungsposition/rechnungsposition.service';
 
 @Injectable({
   providedIn: BusinessLogicModule
