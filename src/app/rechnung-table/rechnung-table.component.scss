@@ -1,0 +1,14 @@
+@import '~@angular/material/theming';
+
+.component-container {
+    @include mat-elevation(8);
+}
+
+.table-container {
+    position: relative;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+}
