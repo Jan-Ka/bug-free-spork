@@ -5,7 +5,8 @@
                 <th mat-header-cell *matHeaderCellDef scope="col">&nbsp;</th>
                 <td mat-cell *matCellDef="let rechnung">
                     <button mat-icon-button color="primary" [attr.aria-label]="getDetailButtonAriaLabel(rechnung)"
-                        (click)="openDetailsDialog(rechnung)">
+                        (click)="openDetailsDialog(rechnung)"
+                        [matTooltip]="getDetailButtonAriaLabel(rechnung)">
                         <mat-icon>details</mat-icon>
                     </button>
                 </td>
@@ -13,7 +14,8 @@
 
             <ng-container matColumnDef="Rechnungsnummer">
                 <th class="rightalign" mat-header-cell *matHeaderCellDef scope="col">Rechnungsnummer</th>
-                <td class="monospaced rightalign" mat-cell *matCellDef="let rechnung">{{rechnung['Rechnungsnummer']}}</td>
+                <td class="monospaced rightalign" mat-cell *matCellDef="let rechnung">{{rechnung['Rechnungsnummer']}}
+                </td>
             </ng-container>
 
             <ng-container matColumnDef="Rechnungsempfänger">

@@ -10,6 +10,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { BusinessLogicModule } from './business-logic/business-logic.module';
 
@@ -35,6 +36,7 @@ import { RechnungBetragNettoPipe } from './rechnung-betrag-netto.pipe';
     MatDialogModule,
     MatButtonModule,
     MatIconModule,
+    MatTooltipModule,
     BusinessLogicModule
   ],
   providers: [],
