@@ -14,7 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { BusinessLogicModule } from './business-logic/business-logic.module';
 
 import { RechnungpositionDetailDialogComponent } from './rechnungposition-detail-dialog/rechnungposition-detail-dialog.component';
-import { LieferstatusTableComponent } from './lieferstatus-table/lieferstatus-table.component';
+import { RechnungspositionDetailTableComponent } from './rechnungsposition-detail-table/rechnungsposition-detail-table.component';
 import { RechnungTableComponent } from './rechnung-table/rechnung-table.component';
 import { RechnungBetragNettoPipe } from './rechnung-betrag-netto.pipe';
 
@@ -22,7 +22,7 @@ import { RechnungBetragNettoPipe } from './rechnung-betrag-netto.pipe';
   declarations: [
     AppComponent,
     RechnungpositionDetailDialogComponent,
-    LieferstatusTableComponent,
+    RechnungspositionDetailTableComponent,
     RechnungTableComponent,
     RechnungBetragNettoPipe
   ],

@@ -1,4 +1,4 @@
-<table #lieferstatusTable mat-table [dataSource]="lieferstatusArray$">
+<table mat-table [dataSource]="lieferstatusArray$">
     <ng-container matColumnDef="Produkt Name">
         <th mat-header-cell *matHeaderCellDef>Produkt Name</th>
         <td mat-cell *matCellDef="let lieferstatus">{{lieferstatus['Produkt Name']}}</td>

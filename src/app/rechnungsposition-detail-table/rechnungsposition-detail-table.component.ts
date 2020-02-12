@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { ILieferstatus } from 'shared/ILieferstatus';
 
 @Component({
-  selector: 'app-lieferstatus-table',
-  templateUrl: './lieferstatus-table.component.html',
-  styleUrls: ['./lieferstatus-table.component.scss']
+  selector: 'app-rechnungsposition-detail-table',
+  templateUrl: './rechnungsposition-detail-table.component.html',
+  styleUrls: ['./rechnungsposition-detail-table.component.scss']
 })
-export class LieferstatusTableComponent implements OnInit {
+export class RechnungspositionDetailTableComponent implements OnInit {
   displayedColumns = ['Produkt Name', 'Lieferstatus'];
   lieferstatusArray$: Observable<ILieferstatus[]>;
 
