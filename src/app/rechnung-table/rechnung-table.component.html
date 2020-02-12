@@ -5,8 +5,7 @@
                 <th mat-header-cell *matHeaderCellDef scope="col">&nbsp;</th>
                 <td mat-cell *matCellDef="let rechnung">
                     <button mat-icon-button color="primary" [attr.aria-label]="rechnung | getDetailButtonTooltip"
-                        (click)="openDetailsDialog(rechnung)"
-                        matTooltip="{{rechnung | getDetailButtonTooltip}}">
+                        (click)="openDetailsDialog(rechnung)" matTooltip="{{rechnung | getDetailButtonTooltip}}">
                         <mat-icon>details</mat-icon>
                     </button>
                 </td>
@@ -39,6 +38,6 @@
         </table>
     </div>
 
-    <mat-paginator [length]="dataSource.available() | async" [pageSize]="pageSize" (page)="handlePageEvent($event)">
+    <mat-paginator [length]="available" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions">
     </mat-paginator>
 </div>
