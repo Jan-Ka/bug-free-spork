@@ -1,5 +1,7 @@
 @import '~@angular/material/theming';
 
+$error-color: #B00020;
+
 .component-container {
     @include mat-elevation(8);
 }
@@ -38,4 +40,13 @@ td.mat-cell {
 
 .cdk-column-Datum {
     min-width: 6em;
+}
+
+.error-message {
+    display: block;
+    padding: 1em;
+    margin-bottom: 2em;
+
+    border: 1px solid $error-color;
+    @include mat-elevation(8, $error-color, 0.8);
 }
