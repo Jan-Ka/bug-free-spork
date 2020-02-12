@@ -5,8 +5,9 @@
     </ng-container>
 
     <ng-container matColumnDef="Produkt Betrag Netto">
-        <th mat-header-cell *matHeaderCellDef>Produkt Betrag Netto</th>
-        <td mat-cell *matCellDef="let rechnungspositionDetail">{{rechnungspositionDetail['Produkt Betrag Netto']}}</td>
+        <th class="rightalign" mat-header-cell *matHeaderCellDef>Produkt Betrag Netto</th>
+        <td class="monospaced rightalign" mat-cell *matCellDef="let rechnungspositionDetail">
+            {{rechnungspositionDetail['Produkt Betrag Netto'] | rechnungBetragNetto}}</td>
     </ng-container>
 
     <ng-container matColumnDef="Lieferstatus">
