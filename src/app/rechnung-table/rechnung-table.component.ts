@@ -36,7 +36,8 @@ export class RechnungTableComponent implements OnInit {
       Rechnungsnummer: rechnung.Rechnungsnummer
     };
 
-    const dialogRef = this.dialog.open(RechnungpositionDetailDialogComponent, {
+    this.dialog.open(RechnungpositionDetailDialogComponent, {
+      width: '80vw',
       data
     });
   }
