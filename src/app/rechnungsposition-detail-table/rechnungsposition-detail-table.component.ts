@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BusinessLogicService } from '../business-logic/business-logic.service';
 import { Observable } from 'rxjs';
-import { ILieferstatus } from 'shared/ILieferstatus';
+import { RechnungspositionDetailService, IRechnungspositionDetail } from './rechnungsposition-detail.service';
 
 @Component({
   selector: 'app-rechnungsposition-detail-table',
@@ -9,16 +8,16 @@ import { ILieferstatus } from 'shared/ILieferstatus';
   styleUrls: ['./rechnungsposition-detail-table.component.scss']
 })
 export class RechnungspositionDetailTableComponent implements OnInit {
-  displayedColumns = ['Produkt Name', 'Lieferstatus'];
-  lieferstatusArray$: Observable<ILieferstatus[]>;
+  displayedColumns = ['Produkt Name', 'Produkt Betrag Netto', 'Lieferstatus'];
+  rechnungspositionDetail$: Observable<IRechnungspositionDetail[]>;
 
   @Input()
   rechnungsUID: string;
 
-  constructor(private businessLogicService: BusinessLogicService) { }
+  constructor(private rechnungspositionDetailService: RechnungspositionDetailService) { }
 
   ngOnInit() {
-    this.lieferstatusArray$ = this.businessLogicService.getAllRechnungLieferstatus(this.rechnungsUID);
+    this.rechnungspositionDetail$ = this.rechnungspositionDetailService.getRechnungspositionDetail(this.rechnungsUID);
   }
 
 }

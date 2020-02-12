@@ -1,12 +1,17 @@
-<table mat-table [dataSource]="lieferstatusArray$">
+<table mat-table [dataSource]="rechnungspositionDetail$">
     <ng-container matColumnDef="Produkt Name">
         <th mat-header-cell *matHeaderCellDef>Produkt Name</th>
-        <td mat-cell *matCellDef="let lieferstatus">{{lieferstatus['Produkt Name']}}</td>
+        <td mat-cell *matCellDef="let rechnungspositionDetail">{{rechnungspositionDetail['Produkt Name']}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Produkt Betrag Netto">
+        <th mat-header-cell *matHeaderCellDef>Produkt Betrag Netto</th>
+        <td mat-cell *matCellDef="let rechnungspositionDetail">{{rechnungspositionDetail['Produkt Betrag Netto']}}</td>
     </ng-container>
 
     <ng-container matColumnDef="Lieferstatus">
-        <th mat-header-cell *matHeaderCellDef>Produkt Betrag Netto</th>
-        <td mat-cell *matCellDef="let lieferstatus">{{lieferstatus.Lieferstatus}}</td>
+        <th mat-header-cell *matHeaderCellDef>Lieferstatus</th>
+        <td mat-cell *matCellDef="let rechnungspositionDetail">{{rechnungspositionDetail.Lieferstatus}}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
