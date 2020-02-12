@@ -16,13 +16,15 @@ import { BusinessLogicModule } from './business-logic/business-logic.module';
 import { RechnungpositionDetailDialogComponent } from './rechnungposition-detail-dialog/rechnungposition-detail-dialog.component';
 import { LieferstatusTableComponent } from './lieferstatus-table/lieferstatus-table.component';
 import { RechnungTableComponent } from './rechnung-table/rechnung-table.component';
+import { RechnungBetragNettoPipe } from './rechnung-betrag-netto.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     RechnungpositionDetailDialogComponent,
     LieferstatusTableComponent,
-    RechnungTableComponent
+    RechnungTableComponent,
+    RechnungBetragNettoPipe
   ],
   imports: [
     BrowserModule,
