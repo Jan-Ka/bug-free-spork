@@ -2,17 +2,17 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BusinessLogicService } from '../business-logic/business-logic.service';
 
-export interface IRechnungpositionDetailDialogData {
+export interface IRechnungspositionDetailDialogData {
   'Rechnungs-UID': string;
   Rechnungsnummer: string;
 }
 
 @Component({
-  selector: 'app-rechnungposition-detail-dialog',
-  templateUrl: './rechnungposition-detail-dialog.component.html',
-  styleUrls: ['./rechnungposition-detail-dialog.component.scss']
+  selector: 'app-rechnungsposition-detail-dialog',
+  templateUrl: './rechnungsposition-detail-dialog.component.html',
+  styleUrls: ['./rechnungsposition-detail-dialog.component.scss']
 })
-export class RechnungpositionDetailDialogComponent implements OnInit {
+export class RechnungspositionDetailDialogComponent implements OnInit {
 
   RechnungsUID: string;
 
@@ -20,8 +20,8 @@ export class RechnungpositionDetailDialogComponent implements OnInit {
 
   constructor(
     private businessLogicService: BusinessLogicService,
-    public dialogRef: MatDialogRef<RechnungpositionDetailDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) data: IRechnungpositionDetailDialogData) {
+    public dialogRef: MatDialogRef<RechnungspositionDetailDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) data: IRechnungspositionDetailDialogData) {
     this.RechnungsUID = data['Rechnungs-UID'];
     this.Rechnungsnummer = data.Rechnungsnummer;
   }
