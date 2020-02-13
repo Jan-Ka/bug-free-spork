@@ -44,7 +44,7 @@ describe('RechnungTableComponent', () => {
     fixture.detectChanges();
   });
 
-  it('creates', () => {
+  it('creates it', () => {
     expect(component).toBeTruthy();
   });
 });
