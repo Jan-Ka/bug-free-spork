@@ -1,11 +1,15 @@
+import { BusinessLogicModule } from '../business-logic.module';
+import { LieferstatusService } from './lieferstatus.service';
 import { TestBed } from '@angular/core/testing';
 
-import { LieferstatusService } from './lieferstatus.service';
-
 describe('LieferstatusService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  beforeEach(() => TestBed.configureTestingModule({
+    imports: [
+      BusinessLogicModule
+    ]
+  }));
 
-  it('should be created', () => {
+  it('creates it', () => {
     const service: LieferstatusService = TestBed.get(LieferstatusService);
     expect(service).toBeTruthy();
   });
