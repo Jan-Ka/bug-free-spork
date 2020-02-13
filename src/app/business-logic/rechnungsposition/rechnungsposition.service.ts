@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError, of } from 'rxjs';
 import { BusinessLogicModule } from '../business-logic.module';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
@@ -98,7 +98,9 @@ export class RechnungspositionService {
     const indices = this.indexMap.get(id);
 
     if (!Array.isArray(indices)) {
-      return throwError(`ArgumentException: ${id} is not a valid 'Rechnungs-UID'`);
+      // there weren't any indices
+      // either the key is wrong or there are no `Rechnungsposition` to be found
+      return of([]);
     }
 
     const demoDataByIndices = RechnungspositionService.getDemoDataByIndices(indices, this.rechnungspositionDemoData);
