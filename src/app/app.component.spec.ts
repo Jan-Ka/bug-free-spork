@@ -1,7 +1,7 @@
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BusinessLogicModule } from './business-logic/business-logic.module';
-import { ErrorMessageComponent } from './error-message/error-message/error-message.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
 import { GetDetailButtonTooltipPipe } from './rechnung-table/getDetailButtonTooltipPipe/get-detail-button-tooltip.pipe';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';

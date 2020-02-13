@@ -19,7 +19,7 @@ import { RechnungspositionDetailTableComponent } from './rechnungsposition-detai
 import { RechnungTableComponent } from './rechnung-table/rechnung-table.component';
 import { RechnungBetragNettoPipe } from './rechnung-betrag-netto.pipe';
 import { GetDetailButtonTooltipPipe } from './rechnung-table/getDetailButtonTooltipPipe/get-detail-button-tooltip.pipe';
-import { ErrorMessageComponent } from './error-message/error-message/error-message.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
 
 @NgModule({
   declarations: [

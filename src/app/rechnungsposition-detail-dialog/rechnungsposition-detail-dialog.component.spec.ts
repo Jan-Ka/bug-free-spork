@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BusinessLogicModule } from '../business-logic/business-logic.module';
-import { ErrorMessageComponent } from '../error-message/error-message/error-message.component';
+import { ErrorMessageComponent } from '../error-message/error-message.component';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { RechnungBetragNettoPipe } from '../rechnung-betrag-netto.pipe';

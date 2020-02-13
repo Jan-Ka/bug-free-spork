@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BusinessLogicModule } from '../business-logic/business-logic.module';
-import { ErrorMessageComponent } from '../error-message/error-message/error-message.component';
+import { ErrorMessageComponent } from '../error-message/error-message.component';
 import { GetDetailButtonTooltipPipe } from './getDetailButtonTooltipPipe/get-detail-button-tooltip.pipe';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
