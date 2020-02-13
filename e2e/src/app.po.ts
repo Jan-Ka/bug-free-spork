@@ -1,4 +1,4 @@
-import { browser, by, element } from 'protractor';
+import { browser, by, element, WebElementPromise } from 'protractor';
 
 export class AppPage {
   navigateTo() {
@@ -11,21 +11,42 @@ export class AppPage {
 
   hasPaginator(): Promise<boolean> {
     try {
-      const pagintorElem = element(by.css('mat-paginator')).getWebElement();
-      //if there is an element, we don't get an exception
+      element(by.css('mat-paginator')).getWebElement();
+      // if there is an element, we don't get an exception
       return Promise.resolve(true);
     } catch {
       return Promise.resolve(false);
     }
   }
 
-  hasTable(): Promise<boolean> {
+  hasRechnungTable(): Promise<boolean> {
     try {
-      const tableElem = element(by.css('table')).getWebElement();
-      //if there is an element, we don't get an exception
+      element(by.css('app-rechnung-table')).getWebElement();
+      // if there is an element, we don't get an exception
       return Promise.resolve(true);
     } catch {
+      // if there is an element, we don't get an exception
       return Promise.resolve(false);
     }
+  }
+
+  getRechnungTableRows() {
+    return element.all(by.css('app-rechnung-table tr[data-rechnungs-uid]')).getWebElements();
+  }
+
+  getFirstRechnungTableRowButton() {
+    return element(by.css('app-rechnung-table tbody tr:first-of-type button.mat-icon-button')).getWebElement();
+  }
+
+  getPaginatorNextButton() {
+    return element(by.css('.mat-paginator-navigation-next:enabled')).getWebElement();
+  }
+
+  getPaginatorBackButton() {
+    return element(by.css('.mat-paginator-navigation-previous:enabled')).getWebElement();
+  }
+
+  getOpenDialogs() {
+    return element(by.css('.cdk-overlay-container mat-dialog-container'));
   }
 }
