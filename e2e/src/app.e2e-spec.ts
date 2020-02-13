@@ -8,9 +8,18 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('bug-free-spork app is running!');
+  describe('business requirements', () => {
+    describe('shows a table with pagination', () => {
+      it('shows a table', () => {
+        page.navigateTo();
+        expect(page.hasTable()).toEqual(true);
+      });
+
+      it('shows a pagination', () => {
+        page.navigateTo();
+        expect(page.hasPaginator()).toEqual(true);
+      });
+    });
   });
 
   afterEach(async () => {

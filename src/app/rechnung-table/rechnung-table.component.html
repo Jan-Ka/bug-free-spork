@@ -36,7 +36,7 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr [attr.data-rechnungs-uid]="row['Rechnungs-UID']" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     </div>
 
