@@ -21,7 +21,7 @@ describe('RechnungspositionService', () => {
       environment.demoData = null;
       const service: RechnungspositionService = TestBed.get(RechnungspositionService);
       service.getAllRechnungsposition('').subscribe((value) => {
-        expect(value).toBe([]);
+        expect(value).toEqual([]);
         done();
       });
     });
