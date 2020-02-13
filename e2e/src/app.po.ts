@@ -1,4 +1,4 @@
-import { browser, by, element } from 'protractor';
+import { browser, by, element, WebElementPromise, WebElement } from 'protractor';
 
 export class AppPage {
   navigateTo() {
@@ -11,7 +11,7 @@ export class AppPage {
 
   hasPaginator(): Promise<boolean> {
     try {
-      const pagintorElem = element(by.css('mat-paginator')).getWebElement();
+      element(by.css('mat-paginator')).getWebElement();
       //if there is an element, we don't get an exception
       return Promise.resolve(true);
     } catch {
@@ -19,13 +19,18 @@ export class AppPage {
     }
   }
 
-  hasTable(): Promise<boolean> {
+  hasRechnungTable(): Promise<boolean> {
     try {
-      const tableElem = element(by.css('table')).getWebElement();
+      element(by.css('app-rechnung-table')).getWebElement();
       //if there is an element, we don't get an exception
       return Promise.resolve(true);
     } catch {
+      //if there is an element, we don't get an exception
       return Promise.resolve(false);
     }
+  }
+
+  getRechnungTableRows() {
+    return element.all(by.css('app-rechnung-table tr[data-rechnungs-uid]')).getWebElements()
   }
 }
