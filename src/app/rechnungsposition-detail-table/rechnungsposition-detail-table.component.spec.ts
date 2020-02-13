@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RechnungspositionDetailTableComponent } from './rechnungsposition-detail-table.component';
+import { ErrorMessageComponent } from '../error-message/error-message/error-message.component';
+import { MatTableModule } from '@angular/material/table';
+import { RechnungBetragNettoPipe } from '../rechnung-betrag-netto.pipe';
+import { BusinessLogicModule } from '../business-logic/business-logic.module';
 
 describe('RechnungspositionDetailTableComponent', () => {
   let component: RechnungspositionDetailTableComponent;
@@ -8,9 +12,17 @@ describe('RechnungspositionDetailTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RechnungspositionDetailTableComponent ]
+      declarations: [
+        RechnungspositionDetailTableComponent,
+        ErrorMessageComponent,
+        RechnungBetragNettoPipe
+      ],
+      imports: [
+        BusinessLogicModule,
+        MatTableModule
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +31,7 @@ describe('RechnungspositionDetailTableComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('creates it', () => {
     expect(component).toBeTruthy();
   });
 });
