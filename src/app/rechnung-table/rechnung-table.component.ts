@@ -20,7 +20,8 @@ export class RechnungTableComponent implements OnInit, AfterViewInit {
   dataSource: RechnungDataSource;
   pageSize = 10;
   available = 0;
-  pageSizeOptions = [ 10, 25, 50, 100];
+  pageSizeOptions = [10, 25, 50, 100];
+  error = null;
 
   @ViewChild(MatPaginator, { static: true })
   paginator: MatPaginator;
@@ -32,6 +33,9 @@ export class RechnungTableComponent implements OnInit, AfterViewInit {
     this.dataSource.filter(0, 10);
     this.dataSource.getAvailable().subscribe((value) => {
       this.available = value;
+    });
+    this.dataSource.getError().subscribe((error) => {
+      this.error = error;
     });
   }
 

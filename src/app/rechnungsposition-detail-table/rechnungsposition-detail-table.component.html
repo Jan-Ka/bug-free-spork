@@ -1,3 +1,5 @@
+<app-error-message *ngIf="error" class="error-message" [error]="error"></app-error-message>
+
 <table mat-table [dataSource]="rechnungspositionDetail$">
     <ng-container matColumnDef="Produkt Name">
         <th mat-header-cell *matHeaderCellDef>Produkt Name</th>
