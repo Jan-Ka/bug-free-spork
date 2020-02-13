@@ -8,13 +8,8 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('bug-free-spork app is running!');
-  });
-
   describe('business requirements', () => {
-    it('shows a table with pagination', () => {
+    it('shows a table', () => {
       page.navigateTo();
       expect(page.hasTable()).toEqual(true);
     });
