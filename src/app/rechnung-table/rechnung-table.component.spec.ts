@@ -11,6 +11,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RechnungBetragNettoPipe } from '../rechnung-betrag-netto.pipe';
 import { RechnungTableComponent } from './rechnung-table.component';
+import { environment } from 'src/environments/environment';
 
 describe('RechnungTableComponent', () => {
   let component: RechnungTableComponent;
@@ -38,24 +39,46 @@ describe('RechnungTableComponent', () => {
       .compileComponents();
   }));
 
-  beforeEach(() => {
+  it('creates it', () => {
     fixture = TestBed.createComponent(RechnungTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
 
-  it('creates it', () => {
     expect(component).toBeTruthy();
   });
 
   describe('testing', () => {
     it('\`Rechnungs-UID\` available as data attribute on table row', () => {
-      const fixture = TestBed.createComponent(RechnungTableComponent);
+      const rechnungsUID = [
+        '123',
+        '456',
+        '789'
+      ].sort();
+
+      environment.demoData = {
+        rechnung: rechnungsUID.map((val) => {
+          return {
+            'Rechnungs-UID': val,
+            Rechnungsnummer: '',
+            Rechnungsempfänger: '',
+            'Betrag Netto': '0.000',
+            Datum: new Date().toString()
+          };
+        }),
+        rechnungsposition: [],
+        lieferstatus: []
+      };
+
+      fixture = TestBed.createComponent(RechnungTableComponent);
+      component = fixture.componentInstance;
       fixture.detectChanges();
-      const compiled = fixture.debugElement.nativeElement;
-      const tableRowsDatasets = [...compiled.querySelector('tr[data-rechnungs-uid]')];
-      const actual = tableRowsDatasets.every((value) => 'rechnungsUID' in value.dataset);
-      expect(actual).toBe(true);
-    })
+
+      // TODO: table rows should be accessible as DebugElements but are not for some reason?
+      // const tableRows = fixture.debugElement.queryAll(By.css('tr[data-rechnungs-uid]'));
+      const tableRows = fixture.nativeElement.querySelectorAll('tr[data-rechnungs-uid]');
+      const foundRechnungsUID = [...tableRows].map((row) => row.dataset.rechnungsUid).sort();
+
+      expect(foundRechnungsUID).toEqual(rechnungsUID);
+    });
   });
 });
