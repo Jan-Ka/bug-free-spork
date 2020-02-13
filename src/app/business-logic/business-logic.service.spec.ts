@@ -72,5 +72,47 @@ describe('BusinessLogicService', () => {
         done();
       });
     });
+
+    it('provides a method to receive \`Lieferstatus\` for a given \`Rechnungs-UID\`', (done) => {
+      const rechnungsUid = '123';
+      const produktName = 'Abc';
+
+      const rechnung: IRechnung = {
+        'Rechnungs-UID': rechnungsUid,
+        Rechnungsnummer: 'ABC-123',
+        Rechnungsempfänger: 'abc',
+        Datum: new Date(),
+        'Betrag Netto': 1337
+      };
+
+      const rechnungsposition: IRechnungsposition = {
+        'Rechnungs-UID': rechnungsUid,
+        'Produkt Name': produktName,
+        'Produkt Betrag Netto': 1337.000
+      };
+
+      const lieferstatus: ILieferstatus = {
+        'Produkt Name': produktName,
+        Lieferstatus: 'Test'
+      };
+
+      environment.demoData.rechnung = [
+        rechnung as any
+      ];
+
+      environment.demoData.rechnungsposition = [
+        rechnungsposition as any
+      ];
+
+      environment.demoData.lieferstatus = [
+        lieferstatus as any
+      ];
+
+      const service: BusinessLogicService = TestBed.get(BusinessLogicService);
+      service.getAllRechnungLieferstatus(rechnungsUid).subscribe((value) => {
+        expect(value).toEqual([lieferstatus]);
+        done();
+      });
+    });
   });
 });
