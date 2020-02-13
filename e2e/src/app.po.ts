@@ -1,4 +1,4 @@
-import { browser, by, element } from 'protractor';
+import { browser, by, element, WebElementPromise } from 'protractor';
 
 export class AppPage {
   navigateTo() {
@@ -34,11 +34,19 @@ export class AppPage {
     return element.all(by.css('app-rechnung-table tr[data-rechnungs-uid]')).getWebElements();
   }
 
+  getFirstRechnungTableRowButton() {
+    return element(by.css('app-rechnung-table tbody tr:first-of-type button.mat-icon-button')).getWebElement();
+  }
+
   getPaginatorNextButton() {
     return element(by.css('.mat-paginator-navigation-next:enabled')).getWebElement();
   }
 
   getPaginatorBackButton() {
     return element(by.css('.mat-paginator-navigation-previous:enabled')).getWebElement();
+  }
+
+  getOpenDialogs() {
+    return element(by.css('.cdk-overlay-container mat-dialog-container'));
   }
 }

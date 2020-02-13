@@ -1,5 +1,6 @@
 import { AppPage } from './app.po';
 import { browser, logging, WebElement } from 'protractor';
+import { fail } from 'assert';
 
 describe('workspace-project App', () => {
   let page: AppPage;
@@ -59,6 +60,18 @@ describe('workspace-project App', () => {
 
         expect(initRechnungsUid).toEqual(newRechnungsUid);
         done();
+      });
+
+      it('can open \`Rechnungsposition\` by clicking a button', async () => {
+        page.navigateTo();
+
+        const tableRowButton = await page.getFirstRechnungTableRowButton();
+
+        tableRowButton.click();
+
+        const present = await page.getOpenDialogs().isPresent();
+
+        expect(present).toBeTruthy();
       });
     });
   });
