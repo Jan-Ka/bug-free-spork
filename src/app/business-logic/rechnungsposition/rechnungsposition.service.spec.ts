@@ -2,11 +2,16 @@ import { TestBed } from '@angular/core/testing';
 
 import { RechnungspositionService } from './rechnungsposition.service';
 import { environment } from 'src/environments/environment';
+import { BusinessLogicModule } from '../business-logic.module';
 
 describe('RechnungspositionService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  beforeEach(() => TestBed.configureTestingModule({
+    imports: [
+      BusinessLogicModule
+    ]
+  }));
 
-  it('is created', () => {
+  it('creates it', () => {
     const service: RechnungspositionService = TestBed.get(RechnungspositionService);
     expect(service).toBeTruthy();
   });
