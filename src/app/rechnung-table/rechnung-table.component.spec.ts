@@ -47,4 +47,15 @@ describe('RechnungTableComponent', () => {
   it('creates it', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('testing', () => {
+    it('\`Rechnungs-UID\` available as data attribute on table row', () => {
+      const fixture = TestBed.createComponent(RechnungTableComponent);
+      fixture.detectChanges();
+      const compiled = fixture.debugElement.nativeElement;
+      const tableRowsDatasets = [...compiled.querySelector('tr[data-rechnungs-uid]')];
+      const actual = tableRowsDatasets.every((value) => 'rechnungsUID' in value.dataset);
+      expect(actual).toBe(true);
+    })
+  });
 });
