@@ -13,6 +13,13 @@ describe('workspace-project App', () => {
     expect(page.getTitleText()).toEqual('bug-free-spork app is running!');
   });
 
+  describe('business requirements', () => {
+    it('shows a table with pagination', () => {
+      page.navigateTo();
+      expect(page.hasTable()).toEqual(true);
+    });
+  });
+
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);
