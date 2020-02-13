@@ -1,5 +1,5 @@
 import { BusinessLogicModule } from '../business-logic.module';
-import { environment } from 'src/environments/environment';
+import { DemoDataService } from '../demo-data/demo-data.service';
 import { ILieferstatus } from 'shared/ILieferstatus';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
@@ -13,9 +13,8 @@ export class LieferstatusService {
   private readonly lookup: Map<string, string> = new Map();
   private readonly lieferstatusDemoData: ILieferstatus[];
 
-  constructor(private rechnungspositionService: RechnungspositionService) {
-    // retrieve lieferstatus demo data if available
-    this.lieferstatusDemoData = environment.demoData !== null ? environment.demoData.lieferstatus : [];
+  constructor(private demoDataService: DemoDataService, private rechnungspositionService: RechnungspositionService) {
+    this.lieferstatusDemoData = this.demoDataService.getLieferstatus();
   }
 
   private static populateLieferstatusLookup(target: Map<string, string>, source: ILieferstatus[]): void {

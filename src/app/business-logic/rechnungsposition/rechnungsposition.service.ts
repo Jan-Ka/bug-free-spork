@@ -1,6 +1,6 @@
 import { BehaviorSubject, Observable, throwError, of } from 'rxjs';
 import { BusinessLogicModule } from '../business-logic.module';
-import { environment } from 'src/environments/environment';
+import { DemoDataService } from 'src/app/business-logic/demo-data/demo-data.service';
 import { Injectable } from '@angular/core';
 import { IRechnungsposition } from 'shared/shared.module';
 
@@ -23,13 +23,10 @@ export class RechnungspositionService {
   private readonly indexMap: Map<string, number[]> = new Map();
   private readonly rechnungspositionDemoData: IRechnungsposition[];
 
-  constructor() {
+  constructor(private demoDataService: DemoDataService) {
     this.rechnungspositionDemoData = [];
-    if (environment.demoData !== null) {
-      RechnungspositionService.reviveRechnungspositionDemoData(this.rechnungspositionDemoData, environment.demoData.rechnungsposition);
-
-      RechnungspositionService.generateDemoDataIndices(this.indexMap, this.rechnungspositionDemoData);
-    }
+    RechnungspositionService.reviveRechnungspositionDemoData(this.rechnungspositionDemoData, this.demoDataService.getRechnungsposition());
+    RechnungspositionService.generateDemoDataIndices(this.indexMap, this.rechnungspositionDemoData);
   }
 
   /**

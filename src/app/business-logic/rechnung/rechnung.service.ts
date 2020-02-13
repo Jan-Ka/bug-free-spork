@@ -1,8 +1,8 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { BusinessLogicModule } from '../business-logic.module';
-import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { IRechnung } from '../../../../shared/IRechnung';
+import { DemoDataService } from 'src/app/business-logic/demo-data/demo-data.service';
 
 interface IJsonRechnung {
   'Rechnungs-UID': string;
@@ -21,8 +21,8 @@ export class RechnungService {
 
   private rechnungDemoData: IRechnung[];
 
-  constructor() {
-    this.rechnungDemoData = environment.demoData !== null ? RechnungService.reviveRechnungDemoData(environment.demoData.rechnung) : [];
+  constructor(private demoDataService: DemoDataService) {
+    this.rechnungDemoData = RechnungService.reviveRechnungDemoData(this.demoDataService.getRechnung());
   }
 
   /**
