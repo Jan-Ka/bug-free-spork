@@ -19,7 +19,7 @@ describe('ErrorMessageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('creates it', () => {
     expect(component).toBeTruthy();
   });
 });

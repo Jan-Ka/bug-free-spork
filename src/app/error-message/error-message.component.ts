@@ -10,7 +10,7 @@ export class ErrorMessageComponent implements OnInit {
   constructor() { }
 
   @Input()
-  error: string;
+  error: string = null;
 
   ngOnInit() {
   }
