@@ -1,8 +1,8 @@
-import { IRechnung } from 'shared/IRechnung';
-import { DataSource } from '@angular/cdk/table';
-import { Observable, BehaviorSubject, throwError, of } from 'rxjs';
-import { BusinessLogicService } from './business-logic/business-logic.service';
+import { BusinessLogicService } from '../../business-logic/business-logic.service';
 import { catchError } from 'rxjs/operators';
+import { DataSource } from '@angular/cdk/table';
+import { IRechnung } from 'shared/IRechnung';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 
 export class RechnungDataSource implements DataSource<IRechnung> {
     private rechnungSubject: BehaviorSubject<IRechnung[]> = new BehaviorSubject([]);

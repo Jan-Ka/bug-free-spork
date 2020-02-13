@@ -2,8 +2,8 @@ import { BusinessLogicService } from '../business-logic/business-logic.service';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { IRechnung } from 'shared/IRechnung';
 import { MatDialog } from '@angular/material/dialog';
-import { PageEvent, MatPaginator } from '@angular/material/paginator';
-import { RechnungDataSource } from '../rechnung-data-source';
+import { MatPaginator } from '@angular/material/paginator';
+import { RechnungDataSource } from './rechnung-data-source/rechnung-data-source';
 import {
   RechnungspositionDetailDialogComponent,
   IRechnungspositionDetailDialogData
