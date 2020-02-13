@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BusinessLogicModule } from '../business-logic/business-logic.module';
+import { BusinessLogicService } from '../business-logic/business-logic.service';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
 import { GetDetailButtonTooltipPipe } from './getDetailButtonTooltipPipe/get-detail-button-tooltip.pipe';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,37 +10,38 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { of } from 'rxjs';
 import { RechnungBetragNettoPipe } from '../rechnung-betrag-netto.pipe';
 import { RechnungTableComponent } from './rechnung-table.component';
-import { environment } from 'src/environments/environment';
 
 describe('RechnungTableComponent', () => {
   let component: RechnungTableComponent;
   let fixture: ComponentFixture<RechnungTableComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        ErrorMessageComponent,
-        GetDetailButtonTooltipPipe,
-        RechnungBetragNettoPipe,
-        RechnungTableComponent
-      ],
-      imports: [
-        BrowserAnimationsModule,
-        BusinessLogicModule,
-        MatButtonModule,
-        MatDialogModule,
-        MatIconModule,
-        MatPaginatorModule,
-        MatTableModule,
-        MatTooltipModule,
-      ]
-    })
-      .compileComponents();
-  }));
+  const baseModuleConfig = {
+    declarations: [
+      ErrorMessageComponent,
+      GetDetailButtonTooltipPipe,
+      RechnungBetragNettoPipe,
+      RechnungTableComponent
+    ],
+    imports: [
+      BrowserAnimationsModule,
+      BusinessLogicModule,
+      MatButtonModule,
+      MatDialogModule,
+      MatIconModule,
+      MatPaginatorModule,
+      MatTableModule,
+      MatTooltipModule,
+    ]
+  };
 
   it('creates it', () => {
+    TestBed.configureTestingModule({
+      ...baseModuleConfig
+    })
+      .compileComponents();
+
     fixture = TestBed.createComponent(RechnungTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -55,8 +57,9 @@ describe('RechnungTableComponent', () => {
         '789'
       ].sort();
 
-      environment.demoData = {
-        rechnung: rechnungsUID.map((val) => {
+      const mockBusinessLogicService = jasmine.createSpyObj('BusinessLogicService', ['filterRechnung', 'availableRechnung']);
+      mockBusinessLogicService.filterRechnung.and.returnValue(
+        of(rechnungsUID.map((val) => {
           return {
             'Rechnungs-UID': val,
             Rechnungsnummer: '',
@@ -64,10 +67,17 @@ describe('RechnungTableComponent', () => {
             'Betrag Netto': '0.000',
             Datum: new Date().toString()
           };
-        }),
-        rechnungsposition: [],
-        lieferstatus: []
-      };
+        }))
+      );
+      mockBusinessLogicService.availableRechnung.and.returnValue(of(rechnungsUID.length));
+
+      TestBed.configureTestingModule({
+        ...baseModuleConfig,
+        providers: [
+          { provide: BusinessLogicService, useValue: mockBusinessLogicService }
+        ]
+      })
+        .compileComponents();
 
       fixture = TestBed.createComponent(RechnungTableComponent);
       component = fixture.componentInstance;

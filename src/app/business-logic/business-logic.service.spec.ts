@@ -1,8 +1,8 @@
 import { BusinessLogicModule } from './business-logic.module';
 import { BusinessLogicService } from './business-logic.service';
-import { TestBed } from '@angular/core/testing';
-import { environment } from 'src/environments/environment';
+import { DemoDataService } from './demo-data/demo-data.service';
 import { IRechnung, ILieferstatus, IRechnungsposition } from 'shared/shared.module';
+import { TestBed } from '@angular/core/testing';
 
 describe('BusinessLogicService', () => {
   beforeEach(() => TestBed.configureTestingModule({
@@ -26,13 +26,16 @@ describe('BusinessLogicService', () => {
         'Betrag Netto': 1337
       };
 
-      environment.demoData = {
-        rechnung: [
-          expected as any
-        ],
-        lieferstatus: [],
-        rechnungsposition: []
-      };
+      const mockDemoDataService = jasmine.createSpyObj('DemoDataService', ['getRechnung']);
+      mockDemoDataService.getRechnung.and.returnValue([
+        expected
+      ]);
+
+      TestBed.configureTestingModule({
+        providers: [
+          { provide: DemoDataService, useValue: mockDemoDataService }
+        ]
+      });
 
       const service: BusinessLogicService = TestBed.get(BusinessLogicService);
 
@@ -59,15 +62,19 @@ describe('BusinessLogicService', () => {
         'Produkt Betrag Netto': 1337.000
       };
 
-      environment.demoData = {
-        rechnung: [
-          rechnung as any
-        ],
-        rechnungsposition: [
-          rechnungsposition as any
-        ],
-        lieferstatus: []
-      };
+      const mockDemoDataService = jasmine.createSpyObj('DemoDataService', ['getRechnung', 'getRechnungsposition']);
+      mockDemoDataService.getRechnung.and.returnValue([
+        rechnung
+      ]);
+      mockDemoDataService.getRechnungsposition.and.returnValue([
+        rechnungsposition
+      ]);
+
+      TestBed.configureTestingModule({
+        providers: [
+          { provide: DemoDataService, useValue: mockDemoDataService }
+        ]
+      });
 
       const service: BusinessLogicService = TestBed.get(BusinessLogicService);
       service.getAllRechnungsposition(rechnungsUid).subscribe((value) => {
@@ -99,17 +106,22 @@ describe('BusinessLogicService', () => {
         Lieferstatus: 'Test'
       };
 
-      environment.demoData.rechnung = [
-        rechnung as any
-      ];
+      const mockDemoDataService = jasmine.createSpyObj('DemoDataService', ['getRechnung', 'getRechnungsposition', 'getLieferstatus']);
+      mockDemoDataService.getRechnung.and.returnValue([
+        rechnung
+      ]);
+      mockDemoDataService.getRechnungsposition.and.returnValue([
+        rechnungsposition
+      ]);
+      mockDemoDataService.getLieferstatus.and.returnValue([
+        lieferstatus
+      ]);
 
-      environment.demoData.rechnungsposition = [
-        rechnungsposition as any
-      ];
-
-      environment.demoData.lieferstatus = [
-        lieferstatus as any
-      ];
+      TestBed.configureTestingModule({
+        providers: [
+          { provide: DemoDataService, useValue: mockDemoDataService }
+        ]
+      });
 
       const service: BusinessLogicService = TestBed.get(BusinessLogicService);
       service.getAllRechnungLieferstatus(rechnungsUid).subscribe((value) => {
