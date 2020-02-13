@@ -42,30 +42,33 @@ describe('BusinessLogicService', () => {
     });
 
     it('provides a method to receive \`Rechnungsposition\` for a given \`Rechnungs-UID\`', (done) => {
-      const expected: IRechnungsposition = {
-        'Rechnungs-UID': '123',
+      const rechnungsUid = '123';
+
+      const rechnung: IRechnung = {
+        'Rechnungs-UID': rechnungsUid,
+        Rechnungsnummer: 'ABC-123',
+        Rechnungsempfänger: 'abc',
+        Datum: new Date(),
+        'Betrag Netto': 1337
+      };
+
+      const rechnungsposition: IRechnungsposition = {
+        'Rechnungs-UID': rechnungsUid,
         'Produkt Name': 'Abc',
         'Produkt Betrag Netto': 1337.000
       };
 
-      const lieferpositionSpy = jasmine.createSpyObj('RechnungspositionService', ['getAllRechnungsposition']);
-      lieferpositionSpy.getAllRechnungsposition.and.returnValue(
-        of(
-          [expected]
-        )
-      );
+      environment.demoData.rechnung = [
+        rechnung as any
+      ];
 
-      TestBed.configureTestingModule({
-        providers: [
-          {
-            provide: RechnungspositionService, useValue: lieferpositionSpy
-          }
-        ]
-      });
+      environment.demoData.rechnungsposition = [
+        rechnungsposition as any
+      ];
 
       const service: BusinessLogicService = TestBed.get(BusinessLogicService);
-      service.getAllRechnungsposition(expected['Rechnungs-UID']).subscribe((value) => {
-        expect(value).toEqual([expected]);
+      service.getAllRechnungsposition(rechnungsUid).subscribe((value) => {
+        expect(value).toEqual([rechnungsposition]);
         done();
       });
     });
