@@ -12,6 +12,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RechnungBetragNettoPipe } from './rechnung-betrag-netto.pipe';
 import { RechnungTableComponent } from './rechnung-table/rechnung-table.component';
 import { TestBed, async } from '@angular/core/testing';
+import { TopBarComponent } from './top-bar/top-bar.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -21,7 +22,8 @@ describe('AppComponent', () => {
         RechnungTableComponent,
         ErrorMessageComponent,
         GetDetailButtonTooltipPipe,
-        RechnungBetragNettoPipe
+        RechnungBetragNettoPipe,
+        TopBarComponent
       ],
       imports: [
         BrowserAnimationsModule,
@@ -36,22 +38,15 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
 
-  it('should create the app', () => {
+  it('creates the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'bug-free-spork'`, () => {
+  it(`has title 'bug-free-spork'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('bug-free-spork');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('#app-title').textContent).toContain('bug-free-spork');
   });
 });
