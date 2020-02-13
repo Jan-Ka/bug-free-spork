@@ -20,6 +20,7 @@ import { RechnungTableComponent } from './rechnung-table/rechnung-table.componen
 import { RechnungBetragNettoPipe } from './rechnung-betrag-netto.pipe';
 import { GetDetailButtonTooltipPipe } from './rechnung-table/getDetailButtonTooltipPipe/get-detail-button-tooltip.pipe';
 import { ErrorMessageComponent } from './error-message/error-message.component';
+import { TopBarComponent } from './top-bar/top-bar.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ErrorMessageComponent } from './error-message/error-message.component';
     RechnungTableComponent,
     RechnungBetragNettoPipe,
     GetDetailButtonTooltipPipe,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    TopBarComponent
   ],
   imports: [
     BrowserModule,
