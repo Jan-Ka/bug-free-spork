@@ -9,9 +9,16 @@ describe('workspace-project App', () => {
   });
 
   describe('business requirements', () => {
-    it('shows a table', () => {
-      page.navigateTo();
-      expect(page.hasTable()).toEqual(true);
+    describe('shows a table with pagination', () => {
+      it('shows a table', () => {
+        page.navigateTo();
+        expect(page.hasTable()).toEqual(true);
+      });
+
+      it('shows a pagination', () => {
+        page.navigateTo();
+        expect(page.hasPaginator()).toEqual(true);
+      });
     });
   });
 

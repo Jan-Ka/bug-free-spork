@@ -9,6 +9,16 @@ export class AppPage {
     return element(by.css('app-root .content span')).getText() as Promise<string>;
   }
 
+  hasPaginator(): Promise<boolean> {
+    try {
+      const pagintorElem = element(by.css('mat-paginator')).getWebElement();
+      //if there is an element, we don't get an exception
+      return Promise.resolve(true);
+    } catch {
+      return Promise.resolve(false);
+    }
+  }
+
   hasTable(): Promise<boolean> {
     try {
       const tableElem = element(by.css('table')).getWebElement();
