@@ -3,9 +3,6 @@ import { BusinessLogicService } from './business-logic.service';
 import { TestBed } from '@angular/core/testing';
 import { environment } from 'src/environments/environment';
 import { IRechnung, ILieferstatus, IRechnungsposition } from 'shared/shared.module';
-import { RechnungService } from './rechnung/rechnung.service';
-import { of } from 'rxjs';
-import { RechnungspositionService } from './rechnungsposition/rechnungsposition.service';
 
 describe('BusinessLogicService', () => {
   beforeEach(() => TestBed.configureTestingModule({
@@ -29,9 +26,13 @@ describe('BusinessLogicService', () => {
         'Betrag Netto': 1337
       };
 
-      environment.demoData.rechnung = [
-        expected as any
-      ];
+      environment.demoData = {
+        rechnung: [
+          expected as any
+        ],
+        lieferstatus: [],
+        rechnungsposition: []
+      };
 
       const service: BusinessLogicService = TestBed.get(BusinessLogicService);
 
@@ -58,13 +59,15 @@ describe('BusinessLogicService', () => {
         'Produkt Betrag Netto': 1337.000
       };
 
-      environment.demoData.rechnung = [
-        rechnung as any
-      ];
-
-      environment.demoData.rechnungsposition = [
-        rechnungsposition as any
-      ];
+      environment.demoData = {
+        rechnung: [
+          rechnung as any
+        ],
+        rechnungsposition: [
+          rechnungsposition as any
+        ],
+        lieferstatus: []
+      };
 
       const service: BusinessLogicService = TestBed.get(BusinessLogicService);
       service.getAllRechnungsposition(rechnungsUid).subscribe((value) => {
