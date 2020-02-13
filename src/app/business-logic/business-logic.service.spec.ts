@@ -29,20 +29,9 @@ describe('BusinessLogicService', () => {
         'Betrag Netto': 1337
       };
 
-      const rechnungSpy = jasmine.createSpyObj('RechnungService', ['filter']);
-      rechnungSpy.filter.and.returnValue(
-        of(
-          [expected]
-        )
-      );
-
-      TestBed.configureTestingModule({
-        providers: [
-          {
-            provide: RechnungService, useValue: rechnungSpy
-          }
-        ]
-      });
+      environment.demoData.rechnung = [
+        expected as any
+      ];
 
       const service: BusinessLogicService = TestBed.get(BusinessLogicService);
 
