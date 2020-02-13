@@ -9,7 +9,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { RechnungBetragNettoPipe } from './rechnung-betrag-netto.pipe';
+import { RechnungBetragNettoPipe } from './pipes/rechnung-betrag-netto.pipe';
 import { RechnungTableComponent } from './rechnung-table/rechnung-table.component';
 import { TestBed, async } from '@angular/core/testing';
 import { TopBarComponent } from './top-bar/top-bar.component';

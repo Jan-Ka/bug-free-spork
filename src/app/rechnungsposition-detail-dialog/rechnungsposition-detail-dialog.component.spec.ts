@@ -4,7 +4,7 @@ import { BusinessLogicModule } from '../business-logic/business-logic.module';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
-import { RechnungBetragNettoPipe } from '../rechnung-betrag-netto.pipe';
+import { RechnungBetragNettoPipe } from '../pipes/rechnung-betrag-netto.pipe';
 import { RechnungspositionDetailDialogComponent } from './rechnungsposition-detail-dialog.component';
 import { RechnungspositionDetailTableComponent } from '../rechnungsposition-detail-table/rechnungsposition-detail-table.component';
 

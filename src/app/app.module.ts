@@ -17,7 +17,7 @@ import { BusinessLogicModule } from './business-logic/business-logic.module';
 import { RechnungspositionDetailDialogComponent } from './rechnungsposition-detail-dialog/rechnungsposition-detail-dialog.component';
 import { RechnungspositionDetailTableComponent } from './rechnungsposition-detail-table/rechnungsposition-detail-table.component';
 import { RechnungTableComponent } from './rechnung-table/rechnung-table.component';
-import { RechnungBetragNettoPipe } from './rechnung-betrag-netto.pipe';
+import { RechnungBetragNettoPipe } from './pipes/rechnung-betrag-netto.pipe';
 import { GetDetailButtonTooltipPipe } from './rechnung-table/getDetailButtonTooltipPipe/get-detail-button-tooltip.pipe';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
