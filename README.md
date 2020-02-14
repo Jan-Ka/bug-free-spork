@@ -18,13 +18,27 @@ See your `Rechnung`, matching `Rechnungposition` and their `Lieferstatus` with e
 
 ## Installing / Getting started
 
+There are multiple ways to get bug-free-spork up and running:
+
+### container
+
+* pull image with: `docker pull docker.pkg.github.com/jan-ka/bug-free-spork/bug-free-spork:latest`
+* run container with: `docker run --name bug-free-spork -d -p 3000:80 bug-free-spork:latest`
+* Point your browser at: `http://localhost:3000`
+* *Enjoy bug-free-spork*
+
+### hosted
+
 * Download Release Package
 * Unpack into your favorite Web Server's Public Folder
-* Open your Web Servers address
+* Point your browser to your Web Servers URL
+* *Enjoy bug-free-spork!*
 
 ## Developing
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.25.
+
+Prepare your workspace with `nvm use` to setup node & npm; then run `npm install` to retrieve all dependencies.
 
 ### Development server
 
@@ -33,6 +47,8 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ### Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+You can use `npm run build` to create a production build.
 
 ### Running unit tests
 
