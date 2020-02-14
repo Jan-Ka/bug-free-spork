@@ -22,7 +22,7 @@ import { RechnungBetragNettoPipe } from './pipes/rechnung-betrag-netto.pipe';
 import { GetDetailButtonTooltipPipe } from './rechnung-table/getDetailButtonTooltipPipe/get-detail-button-tooltip.pipe';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
-import { BugFreeSporkMatPaginatorIntl } from './rechnung-table/bug-free-spork-mat-paginator-intl';
+import { BugFreeSporkMatPaginatorIntl } from './rechnung-table/matPaginatorIntl/bug-free-spork-mat-paginator-intl';
 
 @NgModule({
   declarations: [
