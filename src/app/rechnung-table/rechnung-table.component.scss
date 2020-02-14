@@ -50,3 +50,12 @@ td.mat-cell {
     border: 1px solid $error-color;
     @include mat-elevation(8, $error-color, 0.8);
 }
+
+.spinner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 110px;
+    overflow: hidden;
+}

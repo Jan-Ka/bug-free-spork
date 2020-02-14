@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { BusinessLogicModule } from './business-logic/business-logic.module';
 
@@ -21,7 +22,7 @@ import { RechnungBetragNettoPipe } from './pipes/rechnung-betrag-netto.pipe';
 import { GetDetailButtonTooltipPipe } from './rechnung-table/getDetailButtonTooltipPipe/get-detail-button-tooltip.pipe';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
-import { BugFreeSporkMatPaginatorIntl } from './rechnung-table/bug-free-spork-mat-paginator-intl';
+import { BugFreeSporkMatPaginatorIntl } from './rechnung-table/matPaginatorIntl/bug-free-spork-mat-paginator-intl';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { BugFreeSporkMatPaginatorIntl } from './rechnung-table/bug-free-spork-ma
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
+    MatProgressSpinnerModule,
     BusinessLogicModule
   ],
   providers: [

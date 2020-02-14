@@ -36,10 +36,13 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr [attr.data-rechnungs-uid]="row['Rechnungs-UID']" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr [attr.data-rechnungs-uid]="row['Rechnungs-UID']" mat-row
+                *matRowDef="let row; columns: displayedColumns;" [hidden]="loading$ | async"></tr>
         </table>
     </div>
-
+    <div class="spinner-container" *ngIf="loading$ | async">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
     <mat-paginator [length]="available" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions">
     </mat-paginator>
 </div>
