@@ -54,6 +54,14 @@ export class BusinessLogicService {
   }
 
   /**
+   * Receive total count of available `IRechnungsposition` for `Rechnungs-UID`
+   * @param id `Rechnungs-UID`
+   */
+  availableRechnungsposition(id: string): Observable<number> {
+    return this.getRechnungspositionService().getAvailable(id);
+  }
+
+  /**
    * Receive all `ILieferstatus` for provided `Rechnungs-UID`
    * @param id 'Rechnungs-UID'
    */
