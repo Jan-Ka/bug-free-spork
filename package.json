@@ -1,6 +1,21 @@
 {
   "name": "bug-free-spork",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "See your Rechnung, matching Rechnungposition and their Lieferstatus with ease!",
+  "homepage": "https://github.com/Jan-Ka/bug-free-spork",
+  "bugs": {
+    "url": "https://github.com/Jan-Ka/bug-free-spork/issues"
+  },
+  "license": "Unlicense",
+  "author": {
+    "name": "Jan Ka",
+    "email": "jan-ka@users.noreply.github.com",
+    "url": "https://www.cold90.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jan-Ka/bug-free-spork.git"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
