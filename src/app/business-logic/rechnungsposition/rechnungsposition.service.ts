@@ -15,6 +15,7 @@ interface IJsonRechnungsposition {
 })
 export class RechnungspositionService {
   private allRechnungsposition: BehaviorSubject<IRechnungsposition[]> = new BehaviorSubject([]);
+  private availableRechnungspositionSubject: BehaviorSubject<number> = new BehaviorSubject(0);
 
   /**
    * Contains all rechnungspositionDemoData index for a given Rechnungs-UID
@@ -105,5 +106,21 @@ export class RechnungspositionService {
     this.allRechnungsposition.next(demoDataByIndices);
 
     return this.allRechnungsposition.asObservable();
+  }
+
+  getAvailable(id: string): Observable<number> {
+    const indices = this.indexMap.get(id);
+
+    if (!Array.isArray(indices)) {
+      // there weren't any indices
+      // either the key is wrong or there are no `Rechnungsposition` to be found
+      return of(0);
+    }
+
+    const demoDataByIndices = RechnungspositionService.getDemoDataByIndices(indices, this.rechnungspositionDemoData);
+
+    this.availableRechnungspositionSubject.next(demoDataByIndices.length);
+
+    return this.availableRechnungspositionSubject.asObservable();
   }
 }

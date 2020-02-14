@@ -1,6 +1,7 @@
-<h2 mat-dialog-title>Information for <span class="rechnungsnummer">{{ Rechnungsnummer }}</span></h2>
+<h2 mat-dialog-title>Details of <span class="rechnungsnummer">{{ Rechnungsnummer }}</span></h2>
 
 <mat-dialog-content>
+    <p>Showing {{ rechnungspositionAvailable$ | async }} `Rechnungsposition` available.</p>
     <app-rechnungsposition-detail-table [rechnungsUID]="RechnungsUID"></app-rechnungsposition-detail-table>
 </mat-dialog-content>
 
