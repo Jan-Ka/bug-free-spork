@@ -6,6 +6,7 @@ import { GetDetailButtonTooltipPipe } from './rechnung-table/getDetailButtonTool
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -31,6 +32,7 @@ describe('AppComponent', () => {
         MatDialogModule,
         MatIconModule,
         MatPaginatorModule,
+        MatProgressSpinnerModule,
         MatTableModule,
         MatToolbarModule,
         MatTooltipModule

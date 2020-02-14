@@ -9,6 +9,7 @@ import {
   IRechnungspositionDetailDialogData
 } from '../rechnungsposition-detail-dialog/rechnungsposition-detail-dialog.component';
 import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-rechnung-table',
@@ -26,10 +27,14 @@ export class RechnungTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, { static: true })
   paginator: MatPaginator;
 
+  loading$: Observable<boolean>;
+
   constructor(public dialog: MatDialog, private businessLogicService: BusinessLogicService) { }
 
   ngOnInit() {
     this.dataSource = new RechnungDataSource(this.businessLogicService);
+    this.loading$ = this.dataSource.getLoading();
+
     this.dataSource.filter(0, 10);
     this.dataSource.getAvailable().subscribe((value) => {
       this.available = value;

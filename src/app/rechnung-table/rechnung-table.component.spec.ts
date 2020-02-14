@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { of } from 'rxjs';
@@ -31,8 +32,9 @@ describe('RechnungTableComponent', () => {
       MatDialogModule,
       MatIconModule,
       MatPaginatorModule,
+      MatProgressSpinnerModule,
       MatTableModule,
-      MatTooltipModule,
+      MatTooltipModule
     ]
   };
 
