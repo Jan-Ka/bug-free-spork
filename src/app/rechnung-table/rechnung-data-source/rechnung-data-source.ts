@@ -43,10 +43,8 @@ export class RechnungDataSource implements DataSource<IRechnung> {
                 return of([]);
             })
         ).subscribe((value) => {
-            setTimeout(() => {
-                this.loadingSubject.next(false);
-                this.rechnungSubject.next(value);
-            }, 3000);
+            this.loadingSubject.next(false);
+            this.rechnungSubject.next(value);
         });
     }
 }
