@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BusinessLogicModule } from '../business-logic/business-logic.module';
 import { BusinessLogicService } from '../business-logic/business-logic.service';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick, discardPeriodicTasks, flush } from '@angular/core/testing';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
 import { GetDetailButtonTooltipPipe } from './getDetailButtonTooltipPipe/get-detail-button-tooltip.pipe';
 import { MatButtonModule } from '@angular/material/button';
@@ -52,7 +52,7 @@ describe('RechnungTableComponent', () => {
   });
 
   describe('testing', () => {
-    it('\`Rechnungs-UID\` available as data attribute on table row', () => {
+    it('\`Rechnungs-UID\` available as data attribute on table row', fakeAsync(() => {
       const rechnungsUID = [
         '123',
         '456',
@@ -85,12 +85,18 @@ describe('RechnungTableComponent', () => {
       component = fixture.componentInstance;
       fixture.detectChanges();
 
+      // we need to wait for ngIf & [hidden] to do their things
+      // when switching from loading to displaying data
+      flush();
+
+      fixture.detectChanges();
+
       // TODO: table rows should be accessible as DebugElements but are not for some reason?
       // const tableRows = fixture.debugElement.queryAll(By.css('tr[data-rechnungs-uid]'));
       const tableRows = fixture.nativeElement.querySelectorAll('tr[data-rechnungs-uid]');
       const foundRechnungsUID = [...tableRows].map((row) => row.dataset.rechnungsUid).sort();
 
       expect(foundRechnungsUID).toEqual(rechnungsUID);
-    });
+    }));
   });
 });
